@@ -18,6 +18,9 @@
             --tab-content-border-color: #333;
             --download-btn-color: #2ecc71;
             --discord-button-color: #5865F2;
+            --twitch-color: #9146FF;
+            --youtube-color: #FF0000;
+            --tiktok-color: #000000;
         }
 
         body {
@@ -57,9 +60,19 @@
         .btn-blue:hover { background-color: #2980b9; }
 
         .instruction-box { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--tab-content-border-color); padding: 15px; border-radius: 8px; margin: 15px 0; line-height: 1.6; }
-        .discord-section { text-align: center; margin: 40px 0; }
+        
+        /* Social Section */
+        .social-section { text-align: center; margin: 40px 0 10px 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-social { display: inline-flex; align-items: center; gap: 10px; color: white; padding: 12px 20px; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s; min-width: 140px; justify-content: center; }
+        .btn-social:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); color: white; text-decoration: none; }
+        
+        .btn-twitch { background-color: var(--twitch-color); }
+        .btn-youtube { background-color: var(--youtube-color); }
+        .btn-tiktok { background-color: var(--tiktok-color); border: 1px solid #333; }
+
+        .discord-section { text-align: center; margin-bottom: 40px; }
         .btn-discord { display: inline-flex; align-items: center; gap: 12px; background-color: var(--discord-button-color); color: white; padding: 15px 30px; border-radius: 8px; font-size: 1.1em; font-weight: bold; text-decoration: none; transition: 0.3s; }
-        .btn-discord:hover { background-color: #4752c4; transform: scale(1.05); }
+        .btn-discord:hover { background-color: #4752c4; transform: scale(1.05); color: white; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
@@ -236,6 +249,18 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="social-section">
+        <a href="https://www.twitch.tv/glitchsize" class="btn-social btn-twitch" target="_blank">
+            <i class="fab fa-twitch"></i> Twitch
+        </a>
+        <a href="https://youtube.com/@glitchsize6?si=RG91409vqTuC8xNV" class="btn-social btn-youtube" target="_blank">
+            <i class="fab fa-youtube"></i> YouTube
+        </a>
+        <a href="https://www.tiktok.com/@glitchsize6" class="btn-social btn-tiktok" target="_blank">
+            <i class="fab fa-tiktok"></i> TikTok
+        </a>
     </div>
 
     <div class="discord-section">
