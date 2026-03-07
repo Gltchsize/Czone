@@ -19,6 +19,7 @@
             --twitch: #9146FF;
             --youtube: #FF0000;
             --tiktok: #25F4EE;
+            --linktree: #43e660;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -80,6 +81,7 @@
             -webkit-text-fill-color: transparent;
             animation: shine 4s linear infinite;
             text-decoration: none;
+            cursor: pointer;
         }
 
         @keyframes shine { to { background-position: 200% center; } }
@@ -115,24 +117,11 @@
             white-space: nowrap;
         }
 
-        .tab-link:hover {
-            color: #fff;
-            background: rgba(255,255,255,0.05);
-        }
-
-        .tab-link.active {
-            color: #fff;
-            background: var(--accent);
-            box-shadow: 0 4px 15px var(--accent-glow);
-        }
+        .tab-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
+        .tab-link.active { color: #fff; background: var(--accent); box-shadow: 0 4px 15px var(--accent-glow); }
 
         /* --- Content Layout --- */
-        .content-container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
+        .content-container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
         .tab-content {
             display: none;
             animation: slideUp 0.5s ease forwards;
@@ -142,7 +131,6 @@
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
         }
-
         .tab-content.active { display: block; }
 
         @keyframes slideUp {
@@ -195,6 +183,7 @@
             margin: 20px 0;
         }
 
+        /* --- Social Section --- */
         .social-section {
             display: flex;
             justify-content: center;
@@ -215,9 +204,12 @@
             transition: 0.3s;
         }
 
+        .btn-linktree { background: linear-gradient(135deg, #43e660 0%, #19d44c 100%); color: #1e2321 !important; }
         .btn-twitch { background: var(--twitch); }
         .btn-youtube { background: var(--youtube); }
         .btn-tiktok { background: #000; border: 1px solid #333; }
+        
+        .btn-social:hover { transform: translateY(-5px); filter: brightness(1.2); }
 
         .discord-section { text-align: center; margin: 30px 0 60px; }
         .btn-discord {
@@ -235,15 +227,7 @@
             box-shadow: 0 10px 25px rgba(88, 101, 242, 0.3);
         }
 
-        #color-picker {
-            appearance: none;
-            width: 50px;
-            height: 50px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            background: transparent;
-        }
+        #color-picker { appearance: none; width: 50px; height: 50px; border: none; border-radius: 50%; cursor: pointer; background: transparent; }
         #color-picker::-webkit-color-swatch { border-radius: 50%; border: 3px solid white; }
 
         ::-webkit-scrollbar { width: 8px; }
@@ -259,7 +243,7 @@
 
     <header class="header">
         <div class="logo-circle">G</div>
-        <a href="#" class="chromatic-title" onclick="document.getElementById('default-tab').click()">C-Zone</a>
+        <a class="chromatic-title" onclick="document.getElementById('default-tab').click()">C-Zone</a>
     </header>
 
     <nav class="tabs-container">
@@ -278,7 +262,7 @@
         <div id="Accueil" class="tab-content active">
             <h2 style="background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Bienvenue sur C-Zone</h2>
             <p style="color: var(--text-dim); font-size: 1.1em;">Ce site répertorie des **cheats** pour de nombreux jeux. Beaucoup d'autres vont arriver à l'avenir !</p>
-            <p style="color: var(--accent); margin-top: 10px; font-size: 0.9em;"><i class="fas fa-music"></i> Musique en cours : juste après l'orage - TKKF</p>
+            <p style="margin-top: 20px; color: var(--accent); font-size: 0.9em;"><i class="fas fa-music"></i> Musique : juste après l'orage (TKKF)</p>
         </div>
 
         <div id="Valorant" class="tab-content">
@@ -288,14 +272,6 @@
                 <a href="https://mega.nz/file/roxGFLKQ#dARq52F2xGpPl1X02MpT-pg8CKqyJ7NWjSZ7lSWJJXI" class="btn-download" target="_blank"><i class="fas fa-download"></i> Télécharger</a>
             </div>
             </div>
-
-        <div id="Fortnite" class="tab-content">
-            <h2>Contenu Fortnite</h2>
-            <div class="download-item">
-                <div class="download-info">Telecharger le Fortnite cheet v2 Now working :</div>
-                <a href="https://gofile.io/d/EBcChZ" class="btn-download" target="_blank"><i class="fas fa-download"></i> Télécharger</a>
-            </div>
-        </div>
 
         <div id="Parametres" class="tab-content">
             <h2>Paramètres</h2>
@@ -307,8 +283,11 @@
     </div>
 
     <div class="social-section">
+        <a href="https://glitchsize.netlify.app/" class="btn-social btn-linktree" target="_blank">
+            <i class="fas fa-tree"></i> Linktree
+        </a>
         <a href="https://www.twitch.tv/glitchsize" class="btn-social btn-twitch" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
-        <a href="https://youtube.com/@glitchsize6" class="btn-social btn-youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://youtube.com/@glitchsize6?si=RG91409vqTuC8xNV" class="btn-social btn-youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
         <a href="https://www.tiktok.com/@glitchsize6" class="btn-social btn-tiktok" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
     </div>
 
@@ -319,6 +298,7 @@
     </div>
 
     <script>
+        // Gestion Musique
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -327,36 +307,20 @@
         var player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                height: '0',
-                width: '0',
-                videoId: '-Rpua_llhCA',
-                playerVars: {
-                    'autoplay': 1,
-                    'loop': 1,
-                    'playlist': '-Rpua_llhCA',
-                    'controls': 0,
-                    'showinfo': 0,
-                    'autohide': 1,
-                    'modestbranding': 1,
-                    'mute': 0
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
+                height: '0', width: '0', videoId: '-Rpua_llhCA',
+                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': '-Rpua_llhCA', 'controls': 0, 'mute': 0 },
+                events: { 'onReady': onPlayerReady }
             });
         }
-
         function onPlayerReady(event) {
-            // Tente de lancer la musique. Si bloqué, lancera au premier clic.
             event.target.playVideo();
-            
-            // Débloque l'audio après la première interaction utilisateur
             document.body.addEventListener('click', function() {
                 player.playVideo();
                 player.unMute();
             }, { once: true });
         }
 
+        // Navigation
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -373,6 +337,7 @@
             evt.currentTarget.classList.add("active");
         }
 
+        // Personnalisation
         function changeColor(color) {
             document.documentElement.style.setProperty('--accent', color);
             document.documentElement.style.setProperty('--accent-glow', color + '66');
