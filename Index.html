@@ -301,7 +301,7 @@
             <h2><i class="fas fa-star"></i> Accueil</h2>
             <p>Bienvenue sur C-Zone. Ce site répertorie des cheats pour de nombreux jeux.</p>
             <div class="instruction-box">
-                <i class="fas fa-music"></i> Musique : Lecture de votre playlist YouTube Music
+                <i class="fas fa-shuffle"></i> Musique : Playlist en lecture aléatoire activée.
             </div>
         </div>
 
@@ -438,7 +438,8 @@
                     'list': 'PLwmMLmVmd6jHXXVp8gldmU4ary2vJpXDJ',
                     'autoplay': 1,
                     'loop': 1,
-                    'controls': 0
+                    'controls': 0,
+                    'shuffle': 1
                 },
                 events: {
                     'onReady': onPlayerReady
@@ -447,7 +448,9 @@
         }
 
         function onPlayerReady(event) {
-            event.target.playVideo();
+            event.target.setShuffle(true);
+            event.target.playVideoAt(0); 
+            
             document.body.addEventListener('click', function() {
                 player.playVideo();
                 player.unMute();
