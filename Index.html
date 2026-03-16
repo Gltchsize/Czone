@@ -301,7 +301,7 @@
             <h2><i class="fas fa-star"></i> Accueil</h2>
             <p>Bienvenue sur C-Zone. Ce site répertorie des cheats pour de nombreux jeux.</p>
             <div class="instruction-box">
-                <i class="fas fa-music"></i> Musique : juste après l'orage (TKKF)
+                <i class="fas fa-music"></i> Musique : Lecture de votre playlist YouTube Music
             </div>
         </div>
 
@@ -427,14 +427,25 @@
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
         var player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                height: '0', width: '0', videoId: '-Rpua_llhCA',
-                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': '-Rpua_llhCA', 'controls': 0 },
-                events: { 'onReady': onPlayerReady }
+                height: '0',
+                width: '0',
+                playerVars: {
+                    'listType': 'playlist',
+                    'list': 'PLwmMLmVmd6jHXXVp8gldmU4ary2vJpXDJ',
+                    'autoplay': 1,
+                    'loop': 1,
+                    'controls': 0
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
             });
         }
+
         function onPlayerReady(event) {
             event.target.playVideo();
             document.body.addEventListener('click', function() {
@@ -442,6 +453,7 @@
                 player.unMute();
             }, { once: true });
         }
+
         function openTab(evt, tabName) {
             const contents = document.querySelectorAll(".tab-content");
             const links = document.querySelectorAll(".tab-link");
@@ -451,6 +463,7 @@
             evt.currentTarget.classList.add("active");
             evt.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
+
         function changeColor(color) {
             document.documentElement.style.setProperty('--accent', color);
             document.documentElement.style.setProperty('--accent-glow', color + '66');
