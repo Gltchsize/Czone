@@ -3,73 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C-Zone | Premium Cheats</title>
+    <title>C-Zone | Premium Cheats & Tools</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
 
         :root {
-            --bg-dark: #080808;
+            --bg-dark: #050505;
             --accent: #9400D3;
             --accent-glow: rgba(148, 0, 211, 0.4);
-            --glass: rgba(20, 20, 20, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(15, 15, 15, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.08);
             --text-main: #ffffff;
-            --text-dim: #b0b0b0;
-            --twitch: #9146FF;
-            --youtube: #FF0000;
-            --tiktok: #25F4EE;
+            --text-dim: #a0a0a0;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(148, 0, 211, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 255, 255, 0.05) 0%, transparent 40%),
-                url('https://images.unsplash.com/photo-1538370965246-fe2b0d243244?q=80&w=2574&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* --- Music Player Hidden --- */
-        #youtube-audio-container {
+        .bg-animate {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #110022 0%, #050505 100%);
+        }
+
+        .orb {
             position: absolute;
-            top: -9999px;
-            left: -9999px;
-            visibility: hidden;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite alternate;
         }
 
-        /* --- Header & Logo --- */
+        .orb-1 { width: 400px; height: 400px; background: var(--accent); top: -100px; left: -100px; }
+        .orb-2 { width: 300px; height: 300px; background: #00ffff; bottom: -50px; right: -50px; animation-delay: -5s; }
+        .orb-3 { width: 250px; height: 250px; background: #ff00ff; top: 40%; left: 60%; animation-delay: -10s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 100px) scale(1.2); }
+        }
+
         .header {
-            padding: 60px 20px;
+            padding: 40px 20px;
             text-align: center;
+        }
+
+        .logo-container {
             position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
         }
 
         .logo-circle {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
-            font-weight: 800;
-            margin: 0 auto 20px;
-            box-shadow: 0 0 30px var(--accent-glow);
+            width: 70px; height: 70px;
+            background: linear-gradient(135deg, var(--accent), #50007a);
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2em; font-weight: 800;
+            box-shadow: 0 0 40px var(--accent-glow);
             transform: rotate(-5deg);
+            transition: 0.5s;
         }
 
+        .logo-container:hover .logo-circle { transform: rotate(0deg) scale(1.1); }
+
         .chromatic-title {
-            font-size: 4em;
+            font-size: clamp(2.5em, 8vw, 4.5em);
             font-weight: 800;
             letter-spacing: -2px;
             text-transform: uppercase;
@@ -78,323 +88,283 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
-            text-decoration: none;
-            cursor: pointer;
+            animation: shine 5s linear infinite;
         }
 
         @keyframes shine { to { background-position: 200% center; } }
 
-        /* --- Navigation --- */
-        .tabs-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            padding: 10px;
+        .tabs-wrapper {
+            position: sticky; top: 0; z-index: 1000;
             background: var(--glass);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            overflow-x: auto;
+            width: 100%;
         }
 
+        .tabs-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 10px 15px;
+            gap: 8px;
+        }
+
+        .tabs-container::-webkit-scrollbar { display: none; }
+
         .tab-link {
-            background: transparent;
-            border: none;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
             color: var(--text-dim);
-            padding: 12px 20px;
+            padding: 10px 18px;
             border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.9em;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 0.85em;
+            transition: 0.3s;
+            display: flex; align-items: center; gap: 8px;
             white-space: nowrap;
         }
 
-        .tab-link:hover { color: #fff; background: rgba(255,255,255,0.05); }
-        .tab-link.active { color: #fff; background: var(--accent); box-shadow: 0 4px 15px var(--accent-glow); }
+        .tab-link:hover { background: rgba(255,255,255,0.08); color: #fff; }
+        .tab-link.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
 
-        /* --- Content Layout --- */
-        .content-container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .content-container {
+            max-width: 850px;
+            margin: 20px auto 100px;
+            padding: 0 15px;
+        }
+
         .tab-content {
             display: none;
-            animation: slideUp 0.5s ease forwards;
+            animation: fadeInBlur 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
             background: var(--glass);
-            padding: 35px;
-            border-radius: 24px;
+            padding: clamp(20px, 5vw, 40px);
+            border-radius: 28px;
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
+
         .tab-content.active { display: block; }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInBlur {
+            from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        h2 { font-size: 2em; margin-bottom: 20px; font-weight: 800; }
+        h2 { font-size: 1.8em; margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
+        h2 i { color: var(--accent); }
 
         .download-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 15px;
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: 0.3s;
+            flex-wrap: wrap;
+            gap: 15px;
+            transition: 0.4s;
         }
 
         .download-item:hover {
-            background: rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.07);
             border-color: var(--accent);
-            transform: scale(1.01);
+            transform: translateY(-2px);
         }
 
-        .download-info { font-size: 1.05em; font-weight: 500; }
+        .download-info { font-weight: 600; flex: 1; min-width: 200px; }
 
         .btn-download {
             padding: 10px 20px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 700;
             text-decoration: none;
             font-size: 0.85em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            display: flex; align-items: center; gap: 8px;
             transition: 0.3s;
             background: #2ecc71;
             color: white;
+            width: fit-content;
         }
 
-        .btn-download:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3); }
-        .btn-video { background: #e74c3c; }
-        .btn-blue { background: #3498db; }
+        .btn-download:hover { box-shadow: 0 0 20px rgba(46, 204, 113, 0.4); transform: scale(1.05); }
+        .btn-video { background: #ff4757; }
+        .btn-blue { background: #3742fa; }
 
         .instruction-box {
-            background: rgba(148, 0, 211, 0.05);
+            background: linear-gradient(135deg, rgba(148, 0, 211, 0.1), transparent);
             border-left: 4px solid var(--accent);
             padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-size: 0.9em;
         }
 
-        /* --- Social Section --- */
-        .social-section {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 50px;
-            flex-wrap: wrap;
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 40px;
         }
 
         .btn-social {
-            padding: 14px 25px;
+            padding: 15px;
             border-radius: 15px;
             text-decoration: none;
             color: white;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            text-align: center;
+            transition: 0.3s;
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+            font-size: 0.8em;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-social i { font-size: 1.5em; }
+        .btn-social:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); border-color: var(--accent); }
+
+        .discord-card {
+            background: linear-gradient(135deg, #5865F2, #404eed);
+            padding: 30px;
+            border-radius: 24px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 15px 30px rgba(88, 101, 242, 0.3);
+        }
+
+        .btn-discord {
+            display: inline-block;
+            background: white;
+            color: #5865F2;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 800;
+            text-decoration: none;
+            margin-top: 15px;
             transition: 0.3s;
         }
 
-        .btn-linktree { background: linear-gradient(135deg, #43e660 0%, #19d44c 100%); color: #1e2321 !important; }
-        .btn-twitch { background: var(--twitch); }
-        .btn-youtube { background: var(--youtube); }
-        .btn-tiktok { background: #000; border: 1px solid #333; }
+        #youtube-audio-container { position: fixed; top: -100px; }
         
-        .btn-social:hover { transform: translateY(-5px); filter: brightness(1.2); }
-
-        .discord-section { text-align: center; margin: 30px 0 60px; }
-        .btn-discord {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: #5865F2;
-            color: white;
-            padding: 18px 40px;
-            border-radius: 18px;
-            font-size: 1.1em;
-            font-weight: 800;
-            text-decoration: none;
-            transition: 0.4s;
-            box-shadow: 0 10px 25px rgba(88, 101, 242, 0.3);
+        @media (max-width: 600px) {
+            .download-item { flex-direction: column; align-items: flex-start; }
+            .btn-download { width: 100%; justify-content: center; }
+            .header { padding: 30px 10px; }
         }
-
-        #color-picker { appearance: none; width: 50px; height: 50px; border: none; border-radius: 50%; cursor: pointer; background: transparent; }
-        #color-picker::-webkit-color-swatch { border-radius: 50%; border: 3px solid white; }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
     </style>
 </head>
 <body>
+
+    <div class="bg-animate">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
 
     <div id="youtube-audio-container">
         <div id="player"></div>
     </div>
 
     <header class="header">
-        <div class="logo-circle">G</div>
-        <a class="chromatic-title" onclick="document.getElementById('default-tab').click()">C-Zone</a>
+        <div class="logo-container">
+            <div class="logo-circle">G</div>
+        </div><br>
+        <h1 class="chromatic-title">C-Zone</h1>
     </header>
 
-    <nav class="tabs-container">
-        <button id="default-tab" class="tab-link active" onclick="openTab(event, 'Accueil')"><i class="fas fa-home"></i> Accueil</button>
-        <button class="tab-link" onclick="openTab(event, 'Valorant')"><i class="fas fa-crosshairs"></i> Valorant</button>
-        <button class="tab-link" onclick="openTab(event, 'Fortnite')"><i class="fas fa-person-rifle"></i> Fortnite</button>
-        <button class="tab-link" onclick="openTab(event, 'CS2')"><i class="fas fa-gun"></i> CS 2</button>
-        <button class="tab-link" onclick="openTab(event, 'Steam')"><i class="fab fa-steam"></i> Steam</button>
-        <button class="tab-link" onclick="openTab(event, 'Roblox')"><i class="fas fa-cube"></i> Roblox</button>
-        <button class="tab-link" onclick="openTab(event, 'JeuxCrack')"><i class="fas fa-gamepad"></i> Jeux Crack</button>
-        <button class="tab-link" onclick="openTab(event, 'Autre')"><i class="fas fa-plus-circle"></i> Autre</button>
-        <button class="tab-link" onclick="openTab(event, 'Cles')"><i class="fas fa-key"></i> Clés de Licence</button>
-        <button class="tab-link" onclick="openTab(event, 'Parametres')"><i class="fas fa-cog"></i> Paramètres</button>
-    </nav>
+    <div class="tabs-wrapper">
+        <nav class="tabs-container">
+            <button id="default-tab" class="tab-link active" onclick="openTab(event, 'Accueil')"><i class="fas fa-home"></i> Accueil</button>
+            <button class="tab-link" onclick="openTab(event, 'Valorant')"><i class="fas fa-crosshairs"></i> Valorant</button>
+            <button class="tab-link" onclick="openTab(event, 'Fortnite')"><i class="fas fa-person-rifle"></i> Fortnite</button>
+            <button class="tab-link" onclick="openTab(event, 'CS2')"><i class="fas fa-gun"></i> CS 2</button>
+            <button class="tab-link" onclick="openTab(event, 'Steam')"><i class="fab fa-steam"></i> Steam</button>
+            <button class="tab-link" onclick="openTab(event, 'Roblox')"><i class="fas fa-cube"></i> Roblox</button>
+            <button class="tab-link" onclick="openTab(event, 'JeuxCrack')"><i class="fas fa-gamepad"></i> Jeux Crack</button>
+            <button class="tab-link" onclick="openTab(event, 'Autre')"><i class="fas fa-plus-circle"></i> Autre</button>
+            <button class="tab-link" onclick="openTab(event, 'Parametres')"><i class="fas fa-cog"></i> Setup</button>
+        </nav>
+    </div>
 
     <div class="content-container">
         
         <div id="Accueil" class="tab-content active">
-            <h2 style="background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Bienvenue sur C-Zone</h2>
-            <p style="color: var(--text-dim); font-size: 1.1em;">Ce site répertorie des **cheats** pour de nombreux jeux. Beaucoup d'autres vont arriver à l'avenir !</p>
-            <p style="margin-top: 20px; color: var(--accent); font-size: 0.9em;"><i class="fas fa-music"></i> Musique en cours : juste après l'orage (TKKF)</p>
+            <h2><i class="fas fa-star"></i> Bienvenue</h2>
+            <p style="color: var(--text-dim); font-size: 1.1em; margin-bottom: 20px;">
+                L'élite du gaming tools réunit en un seul endroit. Explorez nos catégories pour booster votre expérience.
+            </p>
+            <div class="instruction-box">
+                <i class="fas fa-info-circle"></i> <b>Nouveauté :</b> Le cheat Valorant a été mis à jour aujourd'hui !
+            </div>
+            <p style="color: var(--accent); font-size: 0.9em; opacity: 0.8;">
+                <i class="fas fa-music"></i> Audio : juste après l'orage (TKKF)
+            </p>
         </div>
 
         <div id="Valorant" class="tab-content">
-            <h2>Contenu Valorant</h2>
+            <h2><i class="fas fa-shield-virus"></i> Valorant</h2>
             <div class="download-item">
-                <div class="download-info">unlock all :</div>
-                <a href="https://mega.nz/file/roxGFLKQ#dARq52F2xGpPl1X02MpT-pg8CKqyJ7NWjSZ7lSWJJXI" class="btn-download" target="_blank"><i class="fas fa-download"></i> Télécharger</a>
+                <div class="download-info">Skin Changer (Unlock All)</div>
+                <a href="https://mega.nz/file/roxGFLKQ#dARq52F2xGpPl1X02MpT-pg8CKqyJ7NWjSZ7lSWJJXI" class="btn-download" target="_blank"><i class="fas fa-download"></i> Get</a>
             </div>
             <div class="download-item">
-                <div class="download-info">bypass pour le unlock all :</div>
-                <a href="https://mega.nz/folder/EdpQmDJR#xCuqbCR6ttkEgyyajapRnw" class="btn-download" target="_blank"><i class="fas fa-shield-halved"></i> Télécharger</a>
+                <div class="download-info">Bypass (Security)</div>
+                <a href="https://mega.nz/folder/EdpQmDJR#xCuqbCR6ttkEgyyajapRnw" class="btn-download btn-blue" target="_blank"><i class="fas fa-shield-halved"></i> Get</a>
             </div>
             <div class="download-item">
-                <div class="download-info">Cheat Valorant external (Updated Now) :</div>
-                <a href="https://cdn.discordapp.com/attachments/1390803643715817573/1395006504381317120/LANCY_VALORANT_FULLY_REWORKED_UD.rar..." class="btn-download" target="_blank"><i class="fas fa-bolt"></i> Télécharger</a>
-            </div>
-            <div class="download-item">
-                <div class="download-info">spoofer working now :</div>
-                <a href="http://www.youtube.com/watch?v=J7IMvJIIpQ8" class="btn-download btn-video" target="_blank"><i class="fab fa-youtube"></i> Voir Tuto</a>
-            </div>
-            <div class="download-item">
-                <div class="download-info">🔗 Download Spoofer :</div>
-                <a href="https://gofile.io/d/irUXAE" class="btn-download" target="_blank"><i class="fas fa-link"></i> Gofile</a>
+                <div class="download-info">Lancy External (Reworked)</div>
+                <a href="#" class="btn-download" target="_blank"><i class="fas fa-bolt"></i> Download</a>
             </div>
             <div class="instruction-box">
-                <p>🔐 **Senha/Password:** 123</p>
-                <hr style="border:0; border-top:1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-                <b style="color: var(--accent);">🇺🇸 SKIN CHANGER INSTRUCTIONS (UPDATED 09/12/2025)</b><br>
-                <small style="color: #ff4757;">🚨 IMPORTANT: Follow the steps carefully to avoid errors.</small>
-                <ul style="font-size: 0.9em; padding-left: 20px; margin-top: 10px;">
-                    <li>Open only PACH.exe</li>
-                    <li>Press ENTER when prompted</li>
-                    <li>Wait for ✅ TOTAL SUCCESS</li>
-                    <li>Type SKYRED in Loader</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="Fortnite" class="tab-content">
-            <h2>Contenu Fortnite</h2>
-            <div class="download-item">
-                <div class="download-info">Telecharger le Fortnite cheet v2 Now working (pass 123) :</div>
-                <a href="https://gofile.io/d/EBcChZ" class="btn-download" target="_blank"><i class="fas fa-download"></i> Télécharger</a>
-            </div>
-            <div class="download-item">
-                <div class="download-info">MerkedUd v6 :</div>
-                <a href="https://www.dropbox.com/scl/fi/di7l8w1elv5eugc8c6klx/MEREKUD-LITE-V5.02.zip?rlkey=zv8v6tm9ctwrehh8q38yqbpcq&st=36pwwce3&dl=1" class="btn-download" target="_blank"><i class="fas fa-download"></i> Télécharger</a>
-            </div>
-        </div>
-
-        <div id="CS2" class="tab-content">
-            <h2>Contenu Counter Strike 2</h2>
-            <div class="download-item">
-                <div class="download-info">C-Zone Aimbot, Wallhack et plus :</div>
-                <a href="https://anonym.ninja/download/65BmYEK5Ost7JKP" class="btn-download" target="_blank"><i class="fas fa-download"></i> Télécharger</a>
+                <p>🔑 **Password:** 123</p>
+                <p style="margin-top:10px;"><b>Instructions:</b> Lancez PACH.exe en tant qu'admin, attendez le message de succès, puis entrez le code SKYRED.</p>
             </div>
         </div>
 
         <div id="Steam" class="tab-content">
-            <h2>Contenu Steam</h2>
-            <div class="download-item"><div class="download-info">steam-tools :</div><a href="https://www.steamtools.net/download.html" class="btn-download" target="_blank"><i class="fas fa-download"></i> Télécharger</a></div>
-            <div class="download-item"><div class="download-info">Steam Tool Plugin v1 by GlitchSize :</div><a href="https://steamtoolpluginv1byglitchsize.netlify.app/" class="btn-download btn-blue" target="_blank"><i class="fas fa-plug"></i> Accéder</a></div>
-            <div class="download-item"><div class="download-info">Steam fluent 5.3 :</div><a href="https://cdn.discordapp.com/attachments/1082866737093017640/1095101225504079973/Fluent_For_Steam_0.5.3.3_hotfix3_Public_Version.zip" class="btn-download" target="_blank"><i class="fas fa-download"></i> Télécharger</a></div>
-            <div class="download-item"><div class="download-info">Steam fluent 4.4 :</div><a href="https://github.com/purogamer/Fluent-for-Steam" class="btn-download" target="_blank"><i class="fab fa-github"></i> GitHub</a></div>
-            <div class="download-item"><div class="download-info">Tuto pour Steam tools :</div><a href="https://youtu.be/llEpLjHFK20?si=G2VTlODk82cJ2roG" class="btn-download btn-video" target="_blank"><i class="fab fa-youtube"></i> Regarder</a></div>
-            <div class="download-item"><div class="download-info">Tuto fluent steam :</div><a href="https://youtu.be/39KUng0FuzI?si=0gKDwMbxsOkU-tfO" class="btn-download btn-video" target="_blank"><i class="fab fa-youtube"></i> Regarder</a></div>
-        </div>
-
-        <div id="Roblox" class="tab-content">
-            <h2>Contenu Roblox</h2>
-            <div class="download-item"><div class="download-info">SOLARA EXECITOR :</div><a href="https://getsolara.dev/download/static/files/BootstrapperNew.exe" class="btn-download" target="_blank"><i class="fas fa-play"></i> Télécharger</a></div>
-            <div class="download-item"><div class="download-info">LIEN POUR LES SCRIPT :</div><a href="https://scriptblox.com" class="btn-download" target="_blank"><i class="fas fa-code"></i> Scriptblox</a></div>
-            <div class="download-item"><div class="download-info">Bloxstrap pour SOLARA EXECITOR :</div><a href="https://bloxstrap.org/" class="btn-download" target="_blank"><i class="fas fa-rocket"></i> Télécharger</a></div>
-        </div>
-
-        <div id="JeuxCrack" class="tab-content">
-            <h2>Jeux Crack</h2>
-            <p style="color: var(--text-dim); margin-bottom: 20px;">Accédez à notre bibliothèque de jeux crackés via le lien ci-dessous :</p>
+            <h2><i class="fab fa-steam"></i> Steam Tools</h2>
             <div class="download-item">
-                <div class="download-info">Plateforme Jeux-Crack :</div>
-                <a href="https://jeux-crack.netlify.app/" class="btn-download btn-blue" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder au site</a>
+                <div class="download-info">Steam Tools Official</div>
+                <a href="https://www.steamtools.net/download.html" class="btn-download" target="_blank">Download</a>
             </div>
-        </div>
-
-        <div id="Autre" class="tab-content">
-            <h2>Contenu Autre</h2>
-            <div class="download-item"><div class="download-info">Warzone :</div><a href="https://gofile.io/d/rhRKA6" class="btn-download" target="_blank"><i class="fas fa-download"></i> Gofile</a></div>
-            <div class="download-item"><div class="download-info">Rocket league :</div><a href="https://carbonx.gg/api/download?type=public" class="btn-download" target="_blank"><i class="fas fa-download"></i> Télécharger</a></div>
-            <div class="download-item"><div class="download-info">Fivem :</div><a href="https://gofile.io/d/fXchHD" class="btn-download" target="_blank"><i class="fas fa-download"></i> Gofile</a></div>
-            <h3 style="margin-top:20px;">Minecraft</h3>
-            <div class="download-item"><div class="download-info">Meteor client (All version Fabric) :</div><a href="https://www.9minecraft.net/meteor-client-mod/" class="btn-download" target="_blank"><i class="fas fa-download"></i> Site</a></div>
-            <div class="download-item"><div class="download-info">Wurst client (All version Fabric) :</div><a href="https://www.wurstclient.net/download/" class="btn-download" target="_blank"><i class="fas fa-download"></i> Site</a></div>
-            <div class="download-item"><div class="download-info">FDP client (1.8.9 Forge only) :</div><a href="https://mega.nz/file/zn4TBYTb#Co8-wrONxPkyspYcM5_vETw0rf3AI9H86MgWKJfoJ0c" class="btn-download" target="_blank"><i class="fas fa-download"></i> Mega</a></div>
-            <div class="download-item"><div class="download-info">Bariton Minecraft (1.21.8 Fabric) :</div><a href="https://www.9minecraft.net/baritone-client-mod/" class="btn-download" target="_blank"><i class="fas fa-download"></i> Site</a></div>
-        </div>
-
-        <div id="Cles" class="tab-content">
-            <h2>Clés de Licence</h2>
-            <p style="color: var(--text-dim);">Section pour vos clés de licence à venir...</p>
+            <div class="download-item">
+                <div class="download-info">Fluent Steam Skin (Modern)</div>
+                <a href="https://github.com/purogamer/Fluent-for-Steam" class="btn-download btn-blue" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </div>
         </div>
 
         <div id="Parametres" class="tab-content">
-            <h2>Paramètres</h2>
-            <div class="instruction-box">
-                <label>Personnaliser l'ambiance :</label><br>
-                <input type="color" id="color-picker" value="#9400D3" oninput="changeColor(this.value)">
-            </div>
+            <h2><i class="fas fa-sliders"></i> Personnalisation</h2>
+            <p style="margin-bottom: 15px;">Changez la couleur d'accentuation du site :</p>
+            <input type="color" id="color-picker" value="#9400D3" oninput="changeColor(this.value)" style="width:100%; height:50px; border:none; border-radius:12px; cursor:pointer;">
         </div>
-    </div>
 
-    <div class="social-section">
-        <a href="https://glitchsize.netlify.app/" class="btn-social btn-linktree" target="_blank">
-            <i class="fas fa-tree"></i> Linktree
-        </a>
-        <a href="https://www.twitch.tv/glitchsize" class="btn-social btn-twitch" target="_blank"><i class="fab fa-twitch"></i> Twitch</a>
-        <a href="https://youtube.com/@glitchsize6?si=RG91409vqTuC8xNV" class="btn-social btn-youtube" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.tiktok.com/@glitchsize6" class="btn-social btn-tiktok" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-    </div>
+        <div class="social-grid">
+            <a href="https://glitchsize.netlify.app/" class="btn-social"><i class="fas fa-link"></i><span>Linktree</span></a>
+            <a href="#" class="btn-social"><i class="fab fa-twitch"></i><span>Twitch</span></a>
+            <a href="#" class="btn-social"><i class="fab fa-youtube"></i><span>YouTube</span></a>
+            <a href="#" class="btn-social"><i class="fab fa-tiktok"></i><span>TikTok</span></a>
+        </div>
 
-    <div class="discord-section">
-        <a href="https://discord.gg/PYzSdtBgPR" class="btn-discord" target="_blank">
-            <i class="fab fa-discord"></i> REJOIGNEZ LA COMMUNAUTÉ
-        </a>
+        <div class="discord-card">
+            <i class="fab fa-discord" style="font-size: 3em; margin-bottom: 10px;"></i>
+            <h3>Rejoignez le QG</h3>
+            <p>Support, mises à jour et communauté active.</p>
+            <a href="https://discord.gg/PYzSdtBgPR" class="btn-discord">REJOINDRE</a>
+        </div>
+
     </div>
 
     <script>
-        // Gestion Musique (YouTube API)
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -404,7 +374,7 @@
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 height: '0', width: '0', videoId: '-Rpua_llhCA',
-                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': '-Rpua_llhCA', 'controls': 0, 'mute': 0 },
+                playerVars: { 'autoplay': 1, 'loop': 1, 'playlist': '-Rpua_llhCA', 'controls': 0 },
                 events: { 'onReady': onPlayerReady }
             });
         }
@@ -416,28 +386,20 @@
             }, { once: true });
         }
 
-        // Navigation entre les onglets
         function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tab-link");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
+            const contents = document.querySelectorAll(".tab-content");
+            const links = document.querySelectorAll(".tab-link");
+            contents.forEach(content => content.style.display = "none");
+            links.forEach(link => link.classList.remove("active"));
             document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
+            evt.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
 
-        // Personnalisation des couleurs
         function changeColor(color) {
             document.documentElement.style.setProperty('--accent', color);
             document.documentElement.style.setProperty('--accent-glow', color + '66');
-            document.querySelector('.logo-circle').style.background = color;
+            document.querySelector('.logo-circle').style.background = `linear-gradient(135deg, ${color}, #000)`;
         }
     </script>
 </body>
