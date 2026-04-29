@@ -44,7 +44,7 @@
             border-radius: 50%;
             background: var(--accent-cyan);
             pointer-events: none;
-            z-index: 99999;
+            z-index: 9999999;
             transform: translate(-50%, -50%);
             transition: transform 0.05s linear;
             box-shadow: var(--neon-cyan);
@@ -56,7 +56,7 @@
             border-radius: 50%;
             border: 1px solid rgba(0,255,247,0.4);
             pointer-events: none;
-            z-index: 99998;
+            z-index: 9999998;
             transform: translate(-50%, -50%);
             transition: transform 0.12s ease, width 0.2s ease, height 0.2s ease;
         }
@@ -835,6 +835,7 @@
         backdrop-filter: blur(20px);
         display: flex; align-items: center; justify-content: center;
         padding: 20px;
+        cursor: none;
     ">
         <div style="
             max-width: 520px; width: 100%;
