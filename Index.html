@@ -159,7 +159,6 @@
 
         .logo-hexagon:hover { transform: scale(1.1) rotate(15deg); }
 
-        /* Rotating ring around logo */
         .logo-ring {
             position: absolute;
             top: 50%; left: 50%;
@@ -321,7 +320,6 @@
             clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
         }
 
-        /* Corner accents */
         .tab-content::before,
         .tab-content::after {
             content: '';
@@ -427,6 +425,16 @@
             color: var(--text-main);
         }
 
+        .download-info small {
+            display: block;
+            font-size: 0.78em;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+            text-transform: none;
+            margin-top: 2px;
+            font-weight: 400;
+        }
+
         /* ── BUTTONS ── */
         .btn-download {
             padding: 9px 22px;
@@ -483,6 +491,18 @@
         }
 
         .btn-blue:hover { box-shadow: var(--neon-purple), inset 0 0 20px rgba(180,0,255,0.1); }
+
+        .btn-gold {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            text-shadow: 0 0 8px var(--accent-gold);
+            box-shadow: 0 0 10px rgba(255,215,0,0.15), inset 0 0 10px rgba(255,215,0,0.05);
+        }
+
+        .btn-gold:hover {
+            box-shadow: 0 0 8px #ffd700, 0 0 20px #ffd70080, inset 0 0 20px rgba(255,215,0,0.1);
+            transform: scale(1.05);
+        }
 
         /* ── INSTRUCTION BOX ── */
         .instruction-box {
@@ -643,16 +663,6 @@
             padding: 4px;
         }
 
-        /* ── GLITCH EFFECT on hover ── */
-        @keyframes glitch {
-            0% { clip-path: inset(10% 0 80% 0); transform: translate(-3px, 0); }
-            20% { clip-path: inset(40% 0 50% 0); transform: translate(3px, 0); }
-            40% { clip-path: inset(70% 0 15% 0); transform: translate(-3px, 0); }
-            60% { clip-path: inset(20% 0 65% 0); transform: translate(3px, 0); }
-            80% { clip-path: inset(5% 0 85% 0); transform: translate(-3px, 0); }
-            100% { clip-path: inset(0); transform: translate(0); }
-        }
-
         /* ── DATA STREAM particles ── */
         .data-stream {
             position: fixed;
@@ -713,11 +723,103 @@
             50% { opacity: 0.3; }
         }
 
+        /* ── SITE CARDS (new categories) ── */
+        .site-card {
+            background: rgba(0, 255, 247, 0.02);
+            border: 1px solid rgba(0, 255, 247, 0.08);
+            border-left: 2px solid var(--accent-cyan);
+            border-radius: 3px;
+            padding: 20px 22px;
+            margin-bottom: 14px;
+            transition: 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+            overflow: hidden;
+        }
+
+        .site-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 0; height: 100%;
+            background: linear-gradient(90deg, rgba(0,255,247,0.05), transparent);
+            transition: 0.35s;
+        }
+
+        .site-card:hover::before { width: 100%; }
+
+        .site-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0,255,247,0.1);
+            transform: translateX(4px);
+        }
+
+        .site-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .site-card-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9em;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 8px var(--accent-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .site-card-desc {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.92em;
+            color: rgba(232, 244, 255, 0.6);
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
+
         #youtube-audio-container { position: fixed; top: -100px; }
+
+        /* ── MUSIC BUTTON ── */
+        .music-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9000;
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: rgba(2,1,10,0.92);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-size: 1.1em;
+            display: flex; align-items: center; justify-content: center;
+            cursor: none;
+            box-shadow: 0 0 14px rgba(0,255,247,0.25), inset 0 0 10px rgba(0,255,247,0.05);
+            transition: 0.3s;
+            backdrop-filter: blur(20px);
+        }
+        .music-btn:hover {
+            box-shadow: var(--neon-cyan), inset 0 0 20px rgba(0,255,247,0.1);
+            transform: scale(1.1);
+        }
+        .music-btn.playing {
+            border-color: var(--accent-pink);
+            color: var(--accent-pink);
+            box-shadow: var(--neon-pink), inset 0 0 20px rgba(255,0,94,0.1);
+            animation: music-pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes music-pulse {
+            0%, 100% { box-shadow: var(--neon-pink), inset 0 0 20px rgba(255,0,94,0.1); }
+            50% { box-shadow: 0 0 20px #ff005e, 0 0 40px #ff005e80, inset 0 0 30px rgba(255,0,94,0.15); }
+        }
 
         @media (max-width: 600px) {
             .download-item { flex-direction: column; align-items: flex-start; }
             .btn-download { width: 100%; justify-content: center; }
+            .site-card-header { flex-direction: column; }
             .header { padding: 30px 10px; }
             .hud-corner { display: none; }
         }
@@ -757,6 +859,11 @@
         </svg>
     </div>
 
+    <!-- Music toggle button -->
+    <button class="music-btn" id="music-btn" title="Musique" onclick="toggleMusic()">
+        <i class="fas fa-music" id="music-icon"></i>
+    </button>
+
     <div id="youtube-audio-container">
         <div id="player"></div>
     </div>
@@ -781,6 +888,13 @@
             <button class="tab-link" onclick="openTab(event, 'Roblox')"><i class="fas fa-cube"></i> Roblox</button>
             <button class="tab-link" onclick="openTab(event, 'JeuxCrack')"><i class="fas fa-gamepad"></i> Jeux Crack</button>
             <button class="tab-link" onclick="openTab(event, 'Autre')"><i class="fas fa-plus-circle"></i> Autre</button>
+            <!-- NEW CATEGORIES -->
+            <button class="tab-link" onclick="openTab(event, 'MadLoader')"><i class="fas fa-bolt"></i> MadLoader</button>
+            <button class="tab-link" onclick="openTab(event, 'WeMod')"><i class="fas fa-wand-magic-sparkles"></i> WeMod</button>
+            <button class="tab-link" onclick="openTab(event, 'ModEngine')"><i class="fas fa-engine"></i> ModEngine</button>
+            <button class="tab-link" onclick="openTab(event, 'XModHub')"><i class="fas fa-x"></i> XModHub</button>
+            <button class="tab-link" onclick="openTab(event, 'ExLoader')"><i class="fas fa-file-zipper"></i> ExLoader</button>
+            <!-- END NEW -->
             <button class="tab-link" onclick="openTab(event, 'Parametres')"><i class="fas fa-cog"></i> Setup</button>
         </nav>
     </div>
@@ -901,6 +1015,121 @@
             <div class="download-item"><div class="download-info">Wurst Client</div><a href="https://www.wurstclient.net/download/" class="btn-download" target="_blank"><i class="fas fa-external-link-alt"></i> Site</a></div>
         </div>
 
+        <!-- ═══════════════════════════════════════════════
+             NEW CATEGORIES
+        ═══════════════════════════════════════════════ -->
+
+        <div id="MadLoader" class="tab-content">
+            <div class="status-bar"><div class="status-dot"></div> MADLOADER MODULE &nbsp;·&nbsp; LOADED</div>
+            <h2><i class="fas fa-bolt"></i> MadLoader</h2>
+            <div class="site-card">
+                <div class="site-card-header">
+                    <div class="site-card-title"><i class="fas fa-bolt"></i> &nbsp;madloader.net</div>
+                    <a href="https://madloader.net/#games" class="btn-download btn-gold" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
+                </div>
+                <div class="site-card-desc">
+                    Plateforme de téléchargement de jeux crackés et d'outils gaming. Accès direct à la section <b style="color:var(--accent-gold)">Games</b> — large catalogue mis à jour régulièrement.
+                </div>
+            </div>
+            <div class="download-item">
+                <div class="download-info">Section Jeux
+                    <small>madloader.net/#games</small>
+                </div>
+                <a href="https://madloader.net/#games" class="btn-download btn-gold" target="_blank"><i class="fas fa-gamepad"></i> Ouvrir</a>
+            </div>
+        </div>
+
+        <div id="WeMod" class="tab-content">
+            <div class="status-bar"><div class="status-dot"></div> WEMOD MODULE &nbsp;·&nbsp; LOADED</div>
+            <h2><i class="fas fa-wand-magic-sparkles"></i> WeMod</h2>
+            <div class="site-card">
+                <div class="site-card-header">
+                    <div class="site-card-title"><i class="fas fa-wand-magic-sparkles"></i> &nbsp;wemod.com</div>
+                    <a href="https://www.wemod.com/fr" class="btn-download" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
+                </div>
+                <div class="site-card-desc">
+                    WeMod est la plateforme de trainers la plus populaire — active des cheats en jeu (vie infinie, ressources illimitées, vitesse…) pour des milliers de jeux solo en un clic. Application desktop gratuite disponible.
+                </div>
+            </div>
+            <div class="download-item">
+                <div class="download-info">WeMod — Trainers & Cheats
+                    <small>wemod.com/fr</small>
+                </div>
+                <a href="https://www.wemod.com/fr" class="btn-download" target="_blank"><i class="fas fa-external-link-alt"></i> Visiter</a>
+            </div>
+            <div class="download-item">
+                <div class="download-info">Wand-Enhancer
+                    <small>Extension non-officielle pour améliorer WeMod — k1tbyte/Wand-Enhancer</small>
+                </div>
+                <a href="https://github.com/k1tbyte/Wand-Enhancer" class="btn-download btn-blue" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            </div>
+            <div class="instruction-box">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Télécharge l'app WeMod, cherche ton jeu, lance-le via WeMod et active les options souhaitées.
+            </div>
+        </div>
+
+        <div id="ModEngine" class="tab-content">
+            <div class="status-bar"><div class="status-dot"></div> MODENGINE MODULE &nbsp;·&nbsp; LOADED</div>
+            <h2><i class="fas fa-gears"></i> ModEngine</h2>
+            <div class="site-card">
+                <div class="site-card-header">
+                    <div class="site-card-title"><i class="fas fa-gears"></i> &nbsp;modengine.net</div>
+                    <a href="https://modengine.net/" class="btn-download btn-blue" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
+                </div>
+                <div class="site-card-desc">
+                    ModEngine est un moteur de mods multi-jeux permettant d'injecter, gérer et lancer des mods facilement. Compatible avec de nombreux titres populaires — idéal pour charger des modifications personnalisées.
+                </div>
+            </div>
+            <div class="download-item">
+                <div class="download-info">ModEngine — Mod Loader
+                    <small>modengine.net</small>
+                </div>
+                <a href="https://modengine.net/" class="btn-download btn-blue" target="_blank"><i class="fas fa-external-link-alt"></i> Visiter</a>
+            </div>
+        </div>
+
+        <div id="XModHub" class="tab-content">
+            <div class="status-bar"><div class="status-dot"></div> XMODHUB MODULE &nbsp;·&nbsp; LOADED</div>
+            <h2><i class="fas fa-layer-group"></i> XModHub</h2>
+            <div class="site-card">
+                <div class="site-card-header">
+                    <div class="site-card-title"><i class="fas fa-layer-group"></i> &nbsp;xmodhub.com</div>
+                    <a href="https://www.xmodhub.com/en/" class="btn-download btn-video" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
+                </div>
+                <div class="site-card-desc">
+                    Hub de mods et cheats pour jeux PC et mobile. Catalogue varié avec mods APK, trainers, scripts et outils de modification — recherche par jeu ou par catégorie.
+                </div>
+            </div>
+            <div class="download-item">
+                <div class="download-info">XModHub — Mods & Tools
+                    <small>xmodhub.com/en/</small>
+                </div>
+                <a href="https://www.xmodhub.com/en/" class="btn-download btn-video" target="_blank"><i class="fas fa-external-link-alt"></i> Visiter</a>
+            </div>
+        </div>
+
+        <div id="ExLoader" class="tab-content">
+            <div class="status-bar"><div class="status-dot"></div> EXLOADER MODULE &nbsp;·&nbsp; LOADED</div>
+            <h2><i class="fas fa-file-zipper"></i> ExLoader</h2>
+            <div class="site-card">
+                <div class="site-card-header">
+                    <div class="site-card-title"><i class="fas fa-file-zipper"></i> &nbsp;exloader.net</div>
+                    <a href="https://fr.exloader.net/" class="btn-download btn-blue" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
+                </div>
+                <div class="site-card-desc">
+                    ExLoader est une plateforme francophone de téléchargement de jeux, logiciels et outils crackés. Interface en français, catalogue mis à jour, téléchargements directs ou via hébergeurs.
+                </div>
+            </div>
+            <div class="download-item">
+                <div class="download-info">ExLoader FR — Jeux & Logiciels
+                    <small>fr.exloader.net</small>
+                </div>
+                <a href="https://fr.exloader.net/" class="btn-download btn-blue" target="_blank"><i class="fas fa-external-link-alt"></i> Visiter</a>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════ -->
+
         <div id="Parametres" class="tab-content">
             <div class="status-bar"><div class="status-dot"></div> CONFIGURATION &nbsp;·&nbsp; ACTIVE</div>
             <h2><i class="fas fa-sliders"></i> Setup</h2>
@@ -1008,7 +1237,6 @@
             ctx.fillStyle = '#02010a';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Draw nebula blobs
             const grd1 = ctx.createRadialGradient(
                 canvas.width * 0.2, canvas.height * 0.3, 0,
                 canvas.width * 0.2, canvas.height * 0.3, canvas.width * 0.4
@@ -1027,20 +1255,16 @@
             ctx.fillStyle = grd2;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Stars
             stars.forEach(s => {
                 s.alpha += s.twinkle * s.twinkleDir;
                 if (s.alpha >= 1 || s.alpha <= 0.1) s.twinkleDir *= -1;
                 s.y += s.speed * 0.05;
                 if (s.y > canvas.height) s.y = 0;
 
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                ctx.fillStyle = s.color.replace(')', `, ${s.alpha})`).replace('rgb', 'rgba').replace('#ffffff', `rgba(255,255,255,${s.alpha})`).replace('#b4e4ff', `rgba(180,228,255,${s.alpha})`).replace('#ffe4b4', `rgba(255,228,180,${s.alpha})`);
-
-                // simpler: just set global alpha
                 ctx.globalAlpha = s.alpha;
                 ctx.fillStyle = s.color;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
                 ctx.fill();
                 ctx.globalAlpha = 1;
 
@@ -1055,7 +1279,6 @@
                 }
             });
 
-            // Shooting stars
             shootingStars.forEach((ss, i) => {
                 ctx.save();
                 ctx.translate(ss.x, ss.y);
@@ -1119,20 +1342,22 @@
             document.documentElement.style.setProperty('--neon-cyan', `0 0 8px ${color}, 0 0 20px ${color}80, 0 0 40px ${color}40`);
         }
 
-        // ── YOUTUBE ──
+        // ── YOUTUBE MUSIC ──
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
         var player;
+        var isPlaying = false;
+
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 height: '0', width: '0',
                 playerVars: {
                     'listType': 'playlist',
                     'list': 'PLwmMLmVmd6jHXXVp8gldmU4ary2vJpXDJ',
-                    'autoplay': 1, 'loop': 1, 'controls': 0, 'shuffle': 1
+                    'autoplay': 0, 'loop': 1, 'controls': 0
                 },
                 events: { 'onReady': onPlayerReady }
             });
@@ -1140,11 +1365,24 @@
 
         function onPlayerReady(event) {
             event.target.setShuffle(true);
-            event.target.playVideoAt(0);
-            document.body.addEventListener('click', function() {
+        }
+
+        function toggleMusic() {
+            if (!player) return;
+            const btn = document.getElementById('music-btn');
+            const icon = document.getElementById('music-icon');
+            if (!isPlaying) {
                 player.playVideo();
                 player.unMute();
-            }, { once: true });
+                isPlaying = true;
+                btn.classList.add('playing');
+                icon.className = 'fas fa-pause';
+            } else {
+                player.pauseVideo();
+                isPlaying = false;
+                btn.classList.remove('playing');
+                icon.className = 'fas fa-music';
+            }
         }
     </script>
 </body>
