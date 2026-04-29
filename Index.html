@@ -828,6 +828,81 @@
 </head>
 <body>
 
+    <!-- Disclaimer Modal -->
+    <div id="disclaimer-overlay" style="
+        position: fixed; inset: 0; z-index: 999999;
+        background: rgba(2,1,10,0.96);
+        backdrop-filter: blur(20px);
+        display: flex; align-items: center; justify-content: center;
+        padding: 20px;
+    ">
+        <div style="
+            max-width: 520px; width: 100%;
+            background: rgba(3,2,15,0.95);
+            border: 1px solid rgba(0,255,247,0.25);
+            border-left: 3px solid #00fff7;
+            border-radius: 6px;
+            padding: 40px 36px;
+            position: relative;
+            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+            box-shadow: 0 0 60px rgba(0,255,247,0.1), 0 0 120px rgba(180,0,255,0.05);
+            text-align: center;
+        ">
+            <div style="font-size: 2.5em; margin-bottom: 16px;">⚠️</div>
+            <div style="
+                font-family: 'Orbitron', monospace;
+                font-size: 1em;
+                font-weight: 900;
+                color: #00fff7;
+                text-shadow: 0 0 8px #00fff7, 0 0 20px #00fff780;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                margin-bottom: 20px;
+            ">AVERTISSEMENT</div>
+            <p style="
+                font-family: 'Rajdhani', sans-serif;
+                font-size: 1em;
+                line-height: 1.75;
+                color: rgba(232,244,255,0.75);
+                margin-bottom: 10px;
+            ">
+                Les contenus présents sur <b style="color:#00fff7">C-Zone</b> (cheats, mods, jeux crackés…) sont fournis à titre informatif.
+            </p>
+            <p style="
+                font-family: 'Rajdhani', sans-serif;
+                font-size: 1em;
+                line-height: 1.75;
+                color: rgba(232,244,255,0.75);
+                margin-bottom: 28px;
+            ">
+                En accédant à ce site, vous acceptez que <b style="color:#ff005e">toute utilisation se fait à vos propres risques.</b><br>
+                Les administrateurs déclinent toute responsabilité.
+            </p>
+            <button onclick="document.getElementById('disclaimer-overlay').style.display='none'" style="
+                font-family: 'Orbitron', monospace;
+                font-weight: 800;
+                font-size: 0.75em;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                color: #00fff7;
+                background: transparent;
+                border: 1px solid #00fff7;
+                padding: 13px 40px;
+                border-radius: 3px;
+                cursor: pointer;
+                text-shadow: 0 0 8px #00fff7;
+                box-shadow: 0 0 15px rgba(0,255,247,0.2), inset 0 0 10px rgba(0,255,247,0.05);
+                clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+                transition: 0.3s;
+            "
+            onmouseover="this.style.boxShadow='0 0 8px #00fff7, 0 0 20px #00fff780, 0 0 40px #00fff740, inset 0 0 20px rgba(0,255,247,0.1)'"
+            onmouseout="this.style.boxShadow='0 0 15px rgba(0,255,247,0.2), inset 0 0 10px rgba(0,255,247,0.05)'"
+            >
+                J'ACCEPTE &nbsp;→
+            </button>
+        </div>
+    </div>
+
     <!-- Custom cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursor-ring"></div>
