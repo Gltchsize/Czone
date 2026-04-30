@@ -6,27 +6,24 @@
     <title>C-Zone | Premium Cheats & Tools</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Exo+2:wght@200;400;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Exo+2:wght@200;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-void: #02010a;
+            --bg-void: #03010d;
             --accent-cyan: #00fff7;
             --accent-purple: #b400ff;
             --accent-pink: #ff005e;
             --accent-gold: #ffd700;
-            --glass: rgba(5, 3, 20, 0.75);
-            --glass-border: rgba(0, 255, 247, 0.12);
+            --glass-border: rgba(0,255,247,0.12);
             --text-main: #e8f4ff;
-            --text-dim: #6a8aaa;
-            --neon-cyan: 0 0 8px #00fff7, 0 0 20px #00fff780, 0 0 40px #00fff740;
+            --text-dim: #4a6a88;
+            --neon-cyan: 0 0 8px #00fff7, 0 0 20px #00fff780, 0 0 50px #00fff740;
             --neon-purple: 0 0 8px #b400ff, 0 0 20px #b400ff80, 0 0 40px #b400ff40;
             --neon-pink: 0 0 8px #ff005e, 0 0 20px #ff005e80;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        html { scroll-behavior: smooth; }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        html { scroll-behavior:smooth; }
 
         body {
             font-family: 'Rajdhani', sans-serif;
@@ -37,957 +34,703 @@
             cursor: none;
         }
 
-        /* ── CUSTOM CURSOR ── */
+        /* ═══════ CURSOR ═══════ */
         .cursor {
-            position: fixed;
-            width: 12px; height: 12px;
-            border-radius: 50%;
-            background: var(--accent-cyan);
-            pointer-events: none;
-            z-index: 9999999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.05s linear;
-            box-shadow: var(--neon-cyan);
-            mix-blend-mode: screen;
+            position: fixed; width:10px; height:10px; border-radius:50%;
+            background: var(--accent-cyan); pointer-events:none; z-index:9999999;
+            transform:translate(-50%,-50%); box-shadow:var(--neon-cyan);
+            mix-blend-mode:screen; transition:transform .06s, width .15s, height .15s;
         }
         .cursor-ring {
-            position: fixed;
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            border: 1px solid rgba(0,255,247,0.4);
-            pointer-events: none;
-            z-index: 9999998;
-            transform: translate(-50%, -50%);
-            transition: transform 0.12s ease, width 0.2s ease, height 0.2s ease;
+            position:fixed; width:34px; height:34px; border-radius:50%;
+            border:1px solid rgba(0,255,247,.35); pointer-events:none; z-index:9999998;
+            transform:translate(-50%,-50%);
+            transition:width .2s, height .2s, border-color .2s;
         }
 
-        /* ── STARFIELD BACKGROUND ── */
-        #bg-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -2;
-        }
+        /* ═══════ BG CANVAS ═══════ */
+        #bg-canvas { position:fixed; inset:0; z-index:-3; }
 
-        /* ── NEBULA OVERLAY ── */
+        /* ═══════ ATMOSPHERIC LAYERS ═══════ */
         .nebula {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            pointer-events: none;
+            position:fixed; inset:0; z-index:-2; pointer-events:none;
             background:
-                radial-gradient(ellipse 80% 50% at 20% 30%, rgba(180,0,255,0.08) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 70% at 80% 70%, rgba(0,255,247,0.07) 0%, transparent 60%),
-                radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,0,94,0.04) 0%, transparent 70%);
-            animation: nebula-shift 25s ease-in-out infinite alternate;
+                radial-gradient(ellipse 80% 60% at 10% 20%, rgba(180,0,255,.1) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 90% 80%, rgba(0,255,247,.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,0,94,.04) 0%, transparent 70%);
+            animation: nebula-shift 28s ease-in-out infinite alternate;
         }
-
         @keyframes nebula-shift {
-            0% { opacity: 0.7; transform: scale(1) rotate(0deg); }
-            100% { opacity: 1; transform: scale(1.05) rotate(2deg); }
+            0%   { opacity:.6; transform:scale(1) rotate(0deg); }
+            100% { opacity:1;  transform:scale(1.06) rotate(3deg); }
         }
 
-        /* ── SCAN LINES ── */
         .scanlines {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0px,
-                transparent 3px,
-                rgba(0,0,0,0.08) 3px,
-                rgba(0,0,0,0.08) 4px
+            position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.25;
+            background:repeating-linear-gradient(
+                to bottom, transparent 0, transparent 3px,
+                rgba(0,0,0,.12) 3px, rgba(0,0,0,.12) 4px
             );
-            opacity: 0.4;
         }
 
-        /* ── GRID OVERLAY ── */
         .grid-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
+            position:fixed; inset:0; z-index:0; pointer-events:none;
             background-image:
-                linear-gradient(rgba(0,255,247,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,255,247,0.025) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: grid-drift 40s linear infinite;
+                linear-gradient(rgba(0,255,247,.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,247,.02) 1px, transparent 1px);
+            background-size:60px 60px;
+            animation:grid-drift 50s linear infinite;
+        }
+        @keyframes grid-drift { to { transform:translateY(60px); } }
+
+        /* Grain overlay */
+        .grain {
+            position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.04;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size:200px 200px;
         }
 
-        @keyframes grid-drift {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(60px); }
+        /* Vignette */
+        .vignette {
+            position:fixed; inset:0; z-index:0; pointer-events:none;
+            background:radial-gradient(ellipse 100% 100% at 50% 50%, transparent 35%, rgba(0,0,0,.8) 100%);
         }
 
-        /* ── HEADER ── */
-        .header {
-            padding: 50px 20px 30px;
-            text-align: center;
-            position: relative;
-            z-index: 10;
+        /* ═══════ NAVBAR ═══════ */
+        .navbar {
+            position:fixed; top:0; left:0; right:0; z-index:1000;
+            height:66px;
+            display:flex; align-items:center;
+            padding:0 24px;
+            background:rgba(3,1,13,.88);
+            backdrop-filter:blur(40px) saturate(2);
+            border-bottom:1px solid rgba(0,255,247,.08);
         }
 
-        .logo-container {
-            display: inline-block;
-            margin-bottom: 20px;
-            position: relative;
+        /* animated border bottom */
+        .navbar::after {
+            content:'';
+            position:absolute; bottom:0; left:0; right:0; height:1px;
+            background:linear-gradient(90deg,
+                transparent 0%,
+                rgba(0,255,247,.6) 20%,
+                rgba(180,0,255,.8) 50%,
+                rgba(0,255,247,.6) 80%,
+                transparent 100%);
+            background-size:200% auto;
+            animation:sweep 4s linear infinite;
+        }
+        @keyframes sweep { to { background-position:200% center; } }
+
+        /* Logo */
+        .nav-logo {
+            display:flex; align-items:center; gap:13px;
+            margin-right:22px; flex-shrink:0; text-decoration:none;
         }
 
-        .logo-hexagon {
-            width: 80px; height: 80px;
-            background: linear-gradient(135deg, rgba(0,255,247,0.15), rgba(180,0,255,0.15));
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Orbitron', monospace;
-            font-size: 2em;
-            font-weight: 900;
-            color: var(--accent-cyan);
-            text-shadow: var(--neon-cyan);
-            margin: 0 auto;
-            position: relative;
-            transition: 0.5s;
-            border: 1px solid rgba(0,255,247,0.3);
-            animation: hex-pulse 3s ease-in-out infinite;
+        .nav-logo-hex {
+            position:relative;
+            width:40px; height:40px;
+            clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+            background:linear-gradient(135deg, rgba(0,255,247,.18), rgba(180,0,255,.18));
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Orbitron', monospace; font-weight:900; font-size:1em;
+            color:var(--accent-cyan); text-shadow:var(--neon-cyan);
+            animation:hex-pulse 3s ease-in-out infinite;
         }
-
         @keyframes hex-pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(0,255,247,0.2); }
-            50% { box-shadow: 0 0 40px rgba(0,255,247,0.4), 0 0 80px rgba(180,0,255,0.2); }
+            0%,100% { filter:brightness(1); }
+            50%      { filter:brightness(1.3) drop-shadow(0 0 10px #00fff7); }
         }
 
-        .logo-hexagon:hover { transform: scale(1.1) rotate(15deg); }
+        .nav-logo-ring {
+            position:absolute; inset:-7px; border-radius:50%;
+            border:1px solid transparent;
+            border-top:1px solid rgba(0,255,247,.6);
+            border-right:1px solid rgba(0,255,247,.2);
+            animation:spin 4s linear infinite;
+        }
+        .nav-logo-ring2 {
+            position:absolute; inset:-13px; border-radius:50%;
+            border:1px solid transparent;
+            border-bottom:1px solid rgba(180,0,255,.5);
+            border-left:1px solid rgba(180,0,255,.15);
+            animation:spin 7s linear infinite reverse;
+        }
+        @keyframes spin { to { transform:rotate(360deg); } }
 
-        .logo-ring {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 100px; height: 100px;
-            margin: -50px 0 0 -50px;
-            border-radius: 50%;
-            border: 1px solid transparent;
-            border-top: 1px solid var(--accent-cyan);
-            border-right: 1px solid rgba(0,255,247,0.3);
-            animation: spin 4s linear infinite;
+        .nav-logo-wordmark {
+            display:flex; flex-direction:column; gap:0;
+        }
+        .nav-logo-text {
+            font-family:'Orbitron', monospace; font-weight:900;
+            font-size:1.15em; letter-spacing:5px; line-height:1;
+            background:linear-gradient(90deg, var(--accent-cyan) 0%, #fff 40%, var(--accent-purple) 70%, var(--accent-cyan) 100%);
+            background-size:300% auto;
+            -webkit-background-clip:text; background-clip:text;
+            -webkit-text-fill-color:transparent;
+            animation:shine 5s linear infinite;
+        }
+        @keyframes shine { to { background-position:300% center; } }
+        .nav-logo-sub {
+            font-family:'Share Tech Mono', monospace;
+            font-size:.45em; letter-spacing:4px; color:var(--text-dim);
+            text-transform:uppercase; margin-top:3px;
+            -webkit-text-fill-color:var(--text-dim);
         }
 
-        .logo-ring-2 {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 120px; height: 120px;
-            margin: -60px 0 0 -60px;
-            border-radius: 50%;
-            border: 1px solid transparent;
-            border-bottom: 1px solid var(--accent-purple);
-            border-left: 1px solid rgba(180,0,255,0.3);
-            animation: spin 7s linear infinite reverse;
+        .nav-divider {
+            width:1px; height:32px; flex-shrink:0; margin-right:18px;
+            background:linear-gradient(to bottom, transparent, rgba(0,255,247,.3), transparent);
         }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .chromatic-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(2.8em, 9vw, 5.5em);
-            font-weight: 900;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            background: linear-gradient(90deg,
-                var(--accent-cyan) 0%,
-                #ffffff 30%,
-                var(--accent-purple) 60%,
-                var(--accent-cyan) 100%);
-            background-size: 300% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 6s linear infinite;
-            position: relative;
-        }
-
-        .title-sub {
-            font-family: 'Exo 2', sans-serif;
-            font-size: 0.75em;
-            letter-spacing: 6px;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            margin-top: 5px;
-        }
-
-        @keyframes shine { to { background-position: 300% center; } }
-
-        /* ── TABS ── */
-        .tabs-wrapper {
-            position: sticky; top: 0; z-index: 1000;
-            background: rgba(2, 1, 10, 0.92);
-            backdrop-filter: blur(30px) saturate(1.5);
-            border-bottom: 1px solid var(--glass-border);
-            width: 100%;
-        }
-
-        .tabs-wrapper::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-purple), transparent);
-            animation: border-sweep 4s ease-in-out infinite;
-        }
-
-        @keyframes border-sweep {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-        }
-
+        /* Tabs */
         .tabs-container {
-            max-width: 1200px; margin: 0 auto;
-            display: flex;
-            overflow-x: auto;
-            scrollbar-width: none;
-            padding: 12px 15px;
-            gap: 8px;
+            display:flex; align-items:center; gap:2px;
+            overflow-x:auto; scrollbar-width:none; flex:1; height:66px;
         }
-
-        .tabs-container::-webkit-scrollbar { display: none; }
+        .tabs-container::-webkit-scrollbar { display:none; }
 
         .tab-link {
-            background: rgba(0, 255, 247, 0.03);
-            border: 1px solid rgba(0, 255, 247, 0.1);
-            color: var(--text-dim);
-            padding: 10px 16px;
-            border-radius: 4px;
-            cursor: none;
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            font-size: 0.65em;
-            letter-spacing: 0.5px;
-            transition: 0.3s;
-            display: flex; align-items: center; gap: 6px;
-            white-space: nowrap;
-            flex-shrink: 0;
-            position: relative;
-            overflow: visible;
-            text-transform: uppercase;
-            clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+            position:relative; background:transparent; border:none;
+            color:var(--text-dim); padding:0 15px; height:66px;
+            font-family:'Orbitron', monospace; font-weight:700;
+            font-size:.6em; letter-spacing:1px; text-transform:uppercase;
+            display:flex; align-items:center; gap:7px;
+            white-space:nowrap; flex-shrink:0; cursor:none;
+            transition:color .25s;
+            overflow:hidden;
         }
 
+        /* hover shimmer */
         .tab-link::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,255,247,0.15), transparent);
-            transition: 0.4s;
+            content:'';
+            position:absolute; inset:0;
+            background:linear-gradient(to bottom, transparent 40%, rgba(0,255,247,.04) 100%);
+            opacity:0; transition:opacity .25s;
         }
+        .tab-link:hover::before { opacity:1; }
 
-        .tab-link:hover::before { left: 100%; }
-
-        .tab-link:hover {
-            background: rgba(0, 255, 247, 0.08);
-            color: var(--accent-cyan);
-            border-color: rgba(0,255,247,0.4);
-            text-shadow: 0 0 8px var(--accent-cyan);
-            box-shadow: inset 0 0 20px rgba(0,255,247,0.05);
+        /* bottom bar */
+        .tab-link::after {
+            content:'';
+            position:absolute; bottom:0; left:50%; right:50%;
+            height:2px;
+            background:linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            box-shadow:0 0 8px var(--accent-cyan);
+            transition:left .25s, right .25s;
         }
+        .tab-link:hover { color:rgba(255,255,255,.75); }
+        .tab-link:hover::after { left:15%; right:15%; }
+        .tab-link.active { color:var(--accent-cyan); text-shadow:0 0 12px rgba(0,255,247,.6); }
+        .tab-link.active::after { left:0; right:0; }
 
-        .tab-link.active {
-            background: linear-gradient(135deg, rgba(0,255,247,0.15), rgba(180,0,255,0.1));
-            color: var(--accent-cyan);
-            border-color: var(--accent-cyan);
-            text-shadow: var(--neon-cyan);
-            box-shadow: 0 0 15px rgba(0,255,247,0.2), inset 0 0 20px rgba(0,255,247,0.05);
-        }
-
-        /* ── CONTENT ── */
+        /* ═══════ CONTENT ═══════ */
         .content-container {
-            max-width: 850px;
-            margin: 30px auto 120px;
-            padding: 0 15px;
-            position: relative;
-            z-index: 10;
+            max-width:860px; margin:88px auto 120px; padding:0 18px;
+            position:relative; z-index:10;
         }
 
+        /* ═══════ PANEL ═══════ */
         .tab-content {
-            display: none;
-            animation: panel-in 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-            background: rgba(3, 2, 15, 0.8);
-            padding: clamp(20px, 5vw, 40px);
-            border-radius: 6px;
-            border: 1px solid var(--glass-border);
+            display:none;
+            animation:panel-in .5s cubic-bezier(.23,1,.32,1) forwards;
+            background:linear-gradient(135deg, rgba(3,1,18,.92) 0%, rgba(6,2,24,.88) 100%);
+            padding:clamp(24px,5vw,44px);
+            border-radius:4px;
+            border:1px solid rgba(0,255,247,.1);
             box-shadow:
-                0 0 0 1px rgba(0,255,247,0.05),
-                0 20px 60px rgba(0,0,0,0.6),
-                inset 0 1px 0 rgba(0,255,247,0.1);
-            position: relative;
-            overflow: hidden;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+                0 0 0 1px rgba(0,255,247,.04),
+                0 30px 80px rgba(0,0,0,.7),
+                inset 0 1px 0 rgba(0,255,247,.08),
+                inset 0 0 60px rgba(180,0,255,.02);
+            position:relative; overflow:hidden;
+            clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
         }
 
-        .tab-content::before,
-        .tab-content::after {
-            content: '';
-            position: absolute;
-            width: 30px; height: 30px;
-        }
+        /* animated scan line inside panel */
         .tab-content::before {
-            top: 0; right: 0;
-            border-top: 2px solid var(--accent-cyan);
-            border-right: 2px solid var(--accent-cyan);
-            box-shadow: var(--neon-cyan);
+            content:'';
+            position:absolute; top:0; left:0; right:0; height:1px;
+            background:linear-gradient(90deg, transparent, rgba(0,255,247,.5), rgba(180,0,255,.3), transparent);
+            animation:panel-scan 5s ease-in-out infinite;
         }
-        .tab-content::after {
-            bottom: 0; left: 0;
-            border-bottom: 2px solid var(--accent-purple);
-            border-left: 2px solid var(--accent-purple);
-            box-shadow: var(--neon-purple);
+        @keyframes panel-scan {
+            0%   { top:0;    opacity:0; }
+            5%   { opacity:1; }
+            95%  { opacity:.5; }
+            100% { top:100%; opacity:0; }
         }
 
-        .tab-content.active { display: block; }
+        /* corner accents */
+        .tab-content::after {
+            content:'';
+            position:absolute; bottom:0; left:0; width:22px; height:22px;
+            border-bottom:2px solid var(--accent-purple);
+            border-left:2px solid var(--accent-purple);
+            box-shadow:var(--neon-purple);
+        }
+        .corner-tr {
+            position:absolute; top:0; right:0; width:22px; height:22px;
+            border-top:2px solid var(--accent-cyan);
+            border-right:2px solid var(--accent-cyan);
+            box-shadow:var(--neon-cyan);
+            pointer-events:none; z-index:2;
+        }
+
+        .tab-content.active { display:block; }
 
         @keyframes panel-in {
-            from { opacity: 0; transform: translateY(20px) skewX(-1deg); filter: blur(8px); }
-            to { opacity: 1; transform: translateY(0) skewX(0deg); filter: blur(0); }
+            from { opacity:0; transform:translateY(18px) skewX(-.5deg); filter:blur(10px); }
+            to   { opacity:1; transform:translateY(0)    skewX(0deg);    filter:blur(0); }
         }
 
-        /* ── HEADINGS ── */
+        /* ═══════ STATUS BAR ═══════ */
+        .status-bar {
+            display:flex; align-items:center; gap:10px;
+            margin-bottom:28px;
+            font-family:'Share Tech Mono', monospace;
+            font-size:.72em; color:var(--text-dim); letter-spacing:2px;
+        }
+        .status-dot {
+            width:6px; height:6px; border-radius:50%;
+            background:var(--accent-cyan); box-shadow:var(--neon-cyan);
+            animation:blink 2.5s ease-in-out infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.2;} }
+
+        /* ═══════ HEADINGS ═══════ */
         h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.4em;
-            margin-bottom: 30px;
-            display: flex; align-items: center; gap: 15px;
-            color: var(--accent-cyan);
-            text-shadow: var(--neon-cyan);
-            letter-spacing: 3px;
-            text-transform: uppercase;
+            font-family:'Orbitron', monospace; font-size:1.35em;
+            margin-bottom:28px; display:flex; align-items:center; gap:14px;
+            color:var(--accent-cyan); text-shadow:var(--neon-cyan);
+            letter-spacing:3px; text-transform:uppercase;
         }
-
-        h2 i { color: var(--accent-cyan); font-size: 0.9em; }
-
+        h2 i { font-size:.85em; }
         h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--accent-cyan), transparent);
-            opacity: 0.4;
+            content:''; flex:1; height:1px;
+            background:linear-gradient(90deg, rgba(0,255,247,.4), transparent);
         }
 
         h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 0.9em;
-            color: var(--accent-purple);
-            text-shadow: var(--neon-purple);
-            letter-spacing: 2px;
-            margin: 20px 0 10px;
-            text-transform: uppercase;
+            font-family:'Orbitron', monospace; font-size:.85em;
+            color:var(--accent-purple); text-shadow:var(--neon-purple);
+            letter-spacing:2px; margin:22px 0 12px; text-transform:uppercase;
+            display:flex; align-items:center; gap:8px;
+        }
+        h3::after {
+            content:''; flex:1; height:1px;
+            background:linear-gradient(90deg, rgba(180,0,255,.3), transparent);
         }
 
-        /* ── DOWNLOAD ITEMS ── */
+        /* ═══════ DOWNLOAD ITEMS ═══════ */
         .download-item {
-            background: rgba(0, 255, 247, 0.02);
-            border: 1px solid rgba(0, 255, 247, 0.08);
-            border-left: 2px solid var(--accent-cyan);
-            border-radius: 3px;
-            padding: 14px 20px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            transition: 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-            overflow: hidden;
+            background:rgba(0,255,247,.018);
+            border:1px solid rgba(0,255,247,.07);
+            border-left:2px solid rgba(0,255,247,.6);
+            border-radius:2px;
+            padding:13px 18px; margin-bottom:8px;
+            display:flex; justify-content:space-between; align-items:center;
+            flex-wrap:wrap; gap:14px;
+            transition:.32s cubic-bezier(.23,1,.32,1);
+            position:relative; overflow:hidden;
+            clip-path:polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
         }
-
         .download-item::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 0; height: 100%;
-            background: linear-gradient(90deg, rgba(0,255,247,0.06), transparent);
-            transition: 0.35s;
+            content:'';
+            position:absolute; inset:0;
+            background:linear-gradient(90deg, rgba(0,255,247,.06), transparent 60%);
+            transform:translateX(-100%); transition:transform .35s;
         }
-
-        .download-item:hover::before { width: 100%; }
-
+        .download-item:hover::before { transform:translateX(0); }
         .download-item:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 20px rgba(0,255,247,0.1), inset 0 0 30px rgba(0,255,247,0.03);
-            transform: translateX(4px);
+            border-left-color:var(--accent-cyan);
+            border-color:rgba(0,255,247,.3);
+            box-shadow:0 0 22px rgba(0,255,247,.08), inset 0 0 30px rgba(0,255,247,.02);
+            transform:translateX(4px);
         }
 
         .download-info {
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: 1.05em;
-            flex: 1;
-            min-width: 200px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--text-main);
+            font-family:'Rajdhani', sans-serif; font-weight:700;
+            font-size:1.05em; flex:1; min-width:180px;
+            letter-spacing:1px; text-transform:uppercase; color:var(--text-main);
         }
-
         .download-info small {
-            display: block;
-            font-size: 0.78em;
-            color: var(--text-dim);
-            letter-spacing: 0.5px;
-            text-transform: none;
-            margin-top: 2px;
-            font-weight: 400;
+            display:block; font-size:.75em; color:var(--text-dim);
+            letter-spacing:.5px; text-transform:none; margin-top:2px;
+            font-weight:400; font-family:'Share Tech Mono', monospace;
         }
 
-        /* ── BUTTONS ── */
+        /* ═══════ BUTTONS ═══════ */
         .btn-download {
-            padding: 9px 22px;
-            border-radius: 3px;
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 0.7em;
-            letter-spacing: 2px;
-            display: flex; align-items: center; gap: 8px;
-            transition: 0.3s;
-            background: transparent;
-            border: 1px solid #00fff7;
-            color: var(--accent-cyan);
-            text-shadow: 0 0 8px var(--accent-cyan);
-            box-shadow: 0 0 10px rgba(0,255,247,0.15), inset 0 0 10px rgba(0,255,247,0.05);
-            text-transform: uppercase;
-            clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-            cursor: none;
-            position: relative;
-            overflow: hidden;
+            padding:9px 22px; border-radius:2px;
+            font-family:'Orbitron', monospace; font-weight:700;
+            text-decoration:none; font-size:.68em; letter-spacing:2px;
+            display:flex; align-items:center; gap:8px;
+            transition:.28s; background:transparent;
+            border:1px solid var(--accent-cyan); color:var(--accent-cyan);
+            text-shadow:0 0 8px var(--accent-cyan);
+            box-shadow:0 0 12px rgba(0,255,247,.12), inset 0 0 12px rgba(0,255,247,.04);
+            text-transform:uppercase;
+            clip-path:polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+            cursor:none; position:relative; overflow:hidden;
         }
-
         .btn-download::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0,255,247,0.2), transparent);
-            transition: 0.4s;
+            content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+            background:linear-gradient(90deg, transparent, rgba(0,255,247,.18), transparent);
+            transition:.4s;
         }
-
-        .btn-download:hover::before { left: 100%; }
-
+        .btn-download:hover::before { left:100%; }
         .btn-download:hover {
-            box-shadow: var(--neon-cyan), inset 0 0 20px rgba(0,255,247,0.1);
-            transform: scale(1.05);
+            box-shadow:var(--neon-cyan), inset 0 0 20px rgba(0,255,247,.08);
+            transform:scale(1.04);
         }
 
         .btn-video {
-            border-color: var(--accent-pink);
-            color: var(--accent-pink);
-            text-shadow: 0 0 8px var(--accent-pink);
-            box-shadow: 0 0 10px rgba(255,0,94,0.15), inset 0 0 10px rgba(255,0,94,0.05);
+            border-color:var(--accent-pink); color:var(--accent-pink);
+            text-shadow:0 0 8px var(--accent-pink);
+            box-shadow:0 0 12px rgba(255,0,94,.12), inset 0 0 12px rgba(255,0,94,.04);
         }
-
-        .btn-video:hover { box-shadow: var(--neon-pink), inset 0 0 20px rgba(255,0,94,0.1); }
+        .btn-video:hover { box-shadow:var(--neon-pink), inset 0 0 20px rgba(255,0,94,.08); }
 
         .btn-blue {
-            border-color: var(--accent-purple);
-            color: var(--accent-purple);
-            text-shadow: 0 0 8px var(--accent-purple);
-            box-shadow: 0 0 10px rgba(180,0,255,0.15), inset 0 0 10px rgba(180,0,255,0.05);
+            border-color:var(--accent-purple); color:var(--accent-purple);
+            text-shadow:0 0 8px var(--accent-purple);
+            box-shadow:0 0 12px rgba(180,0,255,.12), inset 0 0 12px rgba(180,0,255,.04);
         }
-
-        .btn-blue:hover { box-shadow: var(--neon-purple), inset 0 0 20px rgba(180,0,255,0.1); }
+        .btn-blue:hover { box-shadow:var(--neon-purple), inset 0 0 20px rgba(180,0,255,.08); }
 
         .btn-gold {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-            text-shadow: 0 0 8px var(--accent-gold);
-            box-shadow: 0 0 10px rgba(255,215,0,0.15), inset 0 0 10px rgba(255,215,0,0.05);
+            border-color:var(--accent-gold); color:var(--accent-gold);
+            text-shadow:0 0 8px var(--accent-gold);
+            box-shadow:0 0 12px rgba(255,215,0,.12), inset 0 0 12px rgba(255,215,0,.04);
         }
-
         .btn-gold:hover {
-            box-shadow: 0 0 8px #ffd700, 0 0 20px #ffd70080, inset 0 0 20px rgba(255,215,0,0.1);
-            transform: scale(1.05);
+            box-shadow:0 0 8px #ffd700, 0 0 22px rgba(255,215,0,.5), inset 0 0 20px rgba(255,215,0,.06);
+            transform:scale(1.04);
         }
 
-        /* ── INSTRUCTION BOX ── */
+        /* ═══════ INSTRUCTION BOX ═══════ */
         .instruction-box {
-            background: linear-gradient(135deg, rgba(0,255,247,0.05), rgba(180,0,255,0.05));
-            border-left: 3px solid var(--accent-cyan);
-            padding: 18px 22px;
-            border-radius: 3px;
-            margin: 22px 0;
-            font-size: 0.95em;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: rgba(232, 244, 255, 0.85);
-            position: relative;
-            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+            background:linear-gradient(135deg, rgba(0,255,247,.05), rgba(180,0,255,.04));
+            border-left:3px solid var(--accent-cyan);
+            border-top:1px solid rgba(0,255,247,.08);
+            border-right:1px solid rgba(0,255,247,.04);
+            border-bottom:1px solid rgba(0,255,247,.04);
+            padding:18px 22px 18px 40px; border-radius:2px;
+            margin:22px 0; font-size:.95em;
+            font-family:'Rajdhani', sans-serif; font-weight:600;
+            letter-spacing:.5px; color:rgba(232,244,255,.85);
+            position:relative;
+            clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
         }
-
         .instruction-box::before {
-            content: '//';
-            position: absolute;
-            top: 16px; left: 18px;
-            color: var(--accent-cyan);
-            font-family: 'Orbitron', monospace;
-            font-size: 0.8em;
-            text-shadow: var(--neon-cyan);
+            content:'//'; position:absolute; top:17px; left:16px;
+            color:var(--accent-cyan); font-family:'Share Tech Mono', monospace;
+            font-size:.85em; text-shadow:var(--neon-cyan);
         }
+        .instruction-box b { color:var(--accent-cyan); text-shadow:0 0 8px var(--accent-cyan); }
 
-        .instruction-box b {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 8px var(--accent-cyan);
-        }
-
-        /* ── SOCIAL GRID ── */
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 10px;
-            margin-top: 40px;
-        }
-
-        .btn-social {
-            padding: 18px;
-            border-radius: 4px;
-            text-decoration: none;
-            color: var(--text-dim);
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            text-align: center;
-            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            font-size: 0.65em;
-            letter-spacing: 2px;
-            background: rgba(0,255,247,0.02);
-            border: 1px solid rgba(0,255,247,0.1);
-            text-transform: uppercase;
-            cursor: none;
-            position: relative;
-            overflow: hidden;
-            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-        }
-
-        .btn-social::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 0; height: 2px;
-            background: var(--accent-cyan);
-            box-shadow: var(--neon-cyan);
-            transition: 0.4s;
-        }
-
-        .btn-social:hover::after { width: 100%; }
-
-        .btn-social i {
-            font-size: 1.8em;
-            color: var(--accent-cyan);
-            text-shadow: var(--neon-cyan);
-        }
-
-        .btn-social:hover {
-            transform: translateY(-6px);
-            background: rgba(0,255,247,0.06);
-            border-color: rgba(0,255,247,0.3);
-            color: var(--accent-cyan);
-            text-shadow: 0 0 8px var(--accent-cyan);
-        }
-
-        /* ── DISCORD CARD ── */
-        .discord-card {
-            background: linear-gradient(135deg, rgba(88,101,242,0.12), rgba(88,101,242,0.05));
-            border: 1px solid rgba(88, 101, 242, 0.4);
-            padding: 35px;
-            border-radius: 6px;
-            text-align: center;
-            margin-top: 30px;
-            box-shadow: 0 0 30px rgba(88, 101, 242, 0.15);
-            position: relative;
-            overflow: hidden;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-        }
-
-        .discord-card::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(88,101,242,0.06) 0%, transparent 60%);
-            animation: discord-pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes discord-pulse {
-            0%, 100% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-
-        .discord-card h3 {
-            font-family: 'Orbitron', monospace;
-            color: #7c8bff;
-            text-shadow: 0 0 12px rgba(88,101,242,0.8);
-            font-size: 1em;
-            margin: 15px 0 5px;
-        }
-
-        .btn-discord {
-            display: inline-block;
-            background: transparent;
-            border: 1px solid #5865F2;
-            color: #7c8bff;
-            padding: 12px 35px;
-            border-radius: 3px;
-            font-family: 'Orbitron', monospace;
-            font-weight: 800;
-            font-size: 0.75em;
-            letter-spacing: 3px;
-            text-decoration: none;
-            margin-top: 18px;
-            transition: 0.3s;
-            text-shadow: 0 0 8px rgba(88,101,242,0.8);
-            box-shadow: 0 0 15px rgba(88,101,242,0.2);
-            text-transform: uppercase;
-            cursor: none;
-            clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-        }
-
-        .btn-discord:hover {
-            box-shadow: 0 0 25px rgba(88,101,242,0.5), inset 0 0 20px rgba(88,101,242,0.1);
-            transform: scale(1.05);
-        }
-
-        /* ── COLOR PICKER ── */
-        input[type="color"] {
-            width: 100%;
-            height: 55px;
-            border: 1px solid var(--glass-border);
-            border-radius: 4px;
-            cursor: none;
-            background: transparent;
-            padding: 4px;
-        }
-
-        /* ── DATA STREAM particles ── */
-        .data-stream {
-            position: fixed;
-            top: 0;
-            pointer-events: none;
-            font-family: 'Orbitron', monospace;
-            font-size: 10px;
-            color: rgba(0, 255, 247, 0.15);
-            z-index: 1;
-            white-space: nowrap;
-            animation: stream-fall linear infinite;
-            text-shadow: 0 0 8px rgba(0,255,247,0.5);
-            user-select: none;
-        }
-
-        @keyframes stream-fall {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(100vh); }
-        }
-
-        /* ── HUD ELEMENTS ── */
-        .hud-corner {
-            position: fixed;
-            z-index: 5;
-            opacity: 0.25;
-            pointer-events: none;
-        }
-
-        .hud-tl { top: 12px; left: 12px; }
-        .hud-tr { top: 12px; right: 12px; }
-        .hud-bl { bottom: 12px; left: 12px; }
-        .hud-br { bottom: 12px; right: 12px; }
-
-        .hud-corner svg { width: 40px; height: 40px; }
-
-        /* ── STATUS INDICATOR ── */
-        .status-bar {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 25px;
-            font-family: 'Exo 2', sans-serif;
-            font-size: 0.75em;
-            color: var(--text-dim);
-            letter-spacing: 2px;
-        }
-
-        .status-dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: var(--accent-cyan);
-            box-shadow: var(--neon-cyan);
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        /* ── SITE CARDS (new categories) ── */
+        /* ═══════ SITE CARDS ═══════ */
         .site-card {
-            background: rgba(0, 255, 247, 0.02);
-            border: 1px solid rgba(0, 255, 247, 0.08);
-            border-left: 2px solid var(--accent-cyan);
-            border-radius: 3px;
-            padding: 20px 22px;
-            margin-bottom: 14px;
-            transition: 0.35s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-            overflow: hidden;
+            background:rgba(0,255,247,.02);
+            border:1px solid rgba(0,255,247,.08);
+            border-left:2px solid rgba(0,255,247,.5);
+            border-radius:2px; padding:20px 22px; margin-bottom:14px;
+            transition:.32s cubic-bezier(.23,1,.32,1);
+            position:relative; overflow:hidden;
+            clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
         }
-
         .site-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 0; height: 100%;
-            background: linear-gradient(90deg, rgba(0,255,247,0.05), transparent);
-            transition: 0.35s;
+            content:''; position:absolute; inset:0;
+            background:linear-gradient(90deg, rgba(0,255,247,.05), transparent 50%);
+            transform:translateX(-100%); transition:.35s;
         }
-
-        .site-card:hover::before { width: 100%; }
-
+        .site-card:hover::before { transform:translateX(0); }
         .site-card:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 20px rgba(0,255,247,0.1);
-            transform: translateX(4px);
+            border-color:rgba(0,255,247,.3);
+            box-shadow:0 0 24px rgba(0,255,247,.08);
+            transform:translateX(4px);
         }
-
         .site-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 10px;
+            display:flex; justify-content:space-between; align-items:flex-start;
+            flex-wrap:wrap; gap:12px; margin-bottom:12px;
         }
-
         .site-card-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 0.9em;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            text-shadow: 0 0 8px var(--accent-cyan);
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            font-family:'Orbitron', monospace; font-size:.88em; font-weight:700;
+            color:var(--accent-cyan); text-shadow:0 0 8px var(--accent-cyan);
+            letter-spacing:2px; text-transform:uppercase;
         }
-
         .site-card-desc {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.92em;
-            color: rgba(232, 244, 255, 0.6);
-            line-height: 1.6;
-            letter-spacing: 0.3px;
+            font-family:'Rajdhani', sans-serif; font-size:.93em;
+            color:rgba(232,244,255,.58); line-height:1.65; letter-spacing:.3px;
         }
 
-        #youtube-audio-container { position: fixed; top: -100px; }
+        /* ═══════ SOCIAL GRID ═══════ */
+        .social-grid {
+            display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr));
+            gap:10px; margin-top:40px;
+        }
+        .btn-social {
+            padding:20px 10px; border-radius:2px;
+            text-decoration:none; color:var(--text-dim);
+            font-family:'Orbitron', monospace; font-weight:700;
+            text-align:center;
+            transition:.38s cubic-bezier(.23,1,.32,1);
+            display:flex; flex-direction:column; align-items:center; gap:10px;
+            font-size:.62em; letter-spacing:2px;
+            background:rgba(0,255,247,.02);
+            border:1px solid rgba(0,255,247,.08);
+            text-transform:uppercase; cursor:none;
+            position:relative; overflow:hidden;
+            clip-path:polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        }
+        .btn-social::after {
+            content:''; position:absolute; bottom:0; left:0;
+            width:0; height:2px;
+            background:linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            box-shadow:var(--neon-cyan); transition:.38s;
+        }
+        .btn-social:hover::after { width:100%; }
+        .btn-social i { font-size:1.75em; color:var(--accent-cyan); text-shadow:var(--neon-cyan); }
+        .btn-social:hover {
+            transform:translateY(-6px);
+            background:rgba(0,255,247,.06);
+            border-color:rgba(0,255,247,.25);
+            color:var(--accent-cyan); text-shadow:0 0 8px var(--accent-cyan);
+            box-shadow:0 12px 30px rgba(0,0,0,.4), 0 0 20px rgba(0,255,247,.06);
+        }
 
-        /* ── MUSIC BUTTON ── */
+        /* ═══════ DISCORD CARD ═══════ */
+        .discord-card {
+            background:linear-gradient(135deg, rgba(88,101,242,.13), rgba(88,101,242,.04));
+            border:1px solid rgba(88,101,242,.35);
+            padding:38px; border-radius:4px; text-align:center; margin-top:30px;
+            box-shadow:0 0 40px rgba(88,101,242,.12);
+            position:relative; overflow:hidden;
+            clip-path:polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+        }
+        .discord-card::before {
+            content:''; position:absolute; inset:-50%;
+            background:radial-gradient(circle, rgba(88,101,242,.07) 0%, transparent 60%);
+            animation:discord-pulse 4s ease-in-out infinite;
+        }
+        @keyframes discord-pulse {
+            0%,100% { transform:scale(.8); opacity:.5; }
+            50%      { transform:scale(1.1); opacity:1; }
+        }
+        .discord-card h3 {
+            font-family:'Orbitron', monospace; color:#7c8bff;
+            text-shadow:0 0 14px rgba(88,101,242,.9); font-size:1em;
+            margin:16px 0 5px; letter-spacing:3px;
+        }
+        .discord-card h3::after { display:none; }
+        .btn-discord {
+            display:inline-flex; align-items:center; gap:8px;
+            background:transparent; border:1px solid #5865F2; color:#7c8bff;
+            padding:12px 36px; border-radius:2px;
+            font-family:'Orbitron', monospace; font-weight:800;
+            font-size:.72em; letter-spacing:3px; text-decoration:none;
+            margin-top:18px; transition:.28s;
+            text-shadow:0 0 8px rgba(88,101,242,.9);
+            box-shadow:0 0 18px rgba(88,101,242,.22);
+            text-transform:uppercase; cursor:none;
+            clip-path:polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+            position:relative; z-index:1;
+        }
+        .btn-discord:hover {
+            box-shadow:0 0 30px rgba(88,101,242,.55), inset 0 0 20px rgba(88,101,242,.1);
+            transform:scale(1.05);
+        }
+
+        /* ═══════ COLOR PICKER ═══════ */
+        input[type="color"] {
+            width:100%; height:56px;
+            border:1px solid var(--glass-border); border-radius:2px;
+            cursor:none; background:transparent; padding:4px;
+        }
+
+        /* ═══════ DATA STREAMS ═══════ */
+        .data-stream {
+            position:fixed; top:0; pointer-events:none;
+            font-family:'Share Tech Mono', monospace; font-size:10px;
+            color:rgba(0,255,247,.12); z-index:1;
+            white-space:pre; line-height:1.6;
+            animation:stream-fall linear infinite;
+            text-shadow:0 0 6px rgba(0,255,247,.4);
+            user-select:none;
+        }
+        @keyframes stream-fall {
+            from { transform:translateY(-100%); }
+            to   { transform:translateY(100vh); }
+        }
+
+        /* ═══════ HUD CORNERS ═══════ */
+        .hud-corner { position:fixed; z-index:5; opacity:.2; pointer-events:none; }
+        .hud-tl { top:72px; left:12px; }
+        .hud-tr { top:72px; right:12px; }
+        .hud-bl { bottom:12px; left:12px; }
+        .hud-br { bottom:12px; right:12px; }
+        .hud-corner svg { width:40px; height:40px; }
+
+        /* ═══════ MUSIC BUTTON ═══════ */
+        #youtube-audio-container { position:fixed; top:-200px; }
+
         .music-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 9000;
-            width: 52px; height: 52px;
-            border-radius: 50%;
-            background: rgba(2,1,10,0.92);
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            font-size: 1.1em;
-            display: flex; align-items: center; justify-content: center;
-            cursor: none;
-            box-shadow: 0 0 14px rgba(0,255,247,0.25), inset 0 0 10px rgba(0,255,247,0.05);
-            transition: 0.3s;
-            backdrop-filter: blur(20px);
+            position:fixed; bottom:26px; right:26px; z-index:9000;
+            width:50px; height:50px; border-radius:50%;
+            background:rgba(3,1,13,.92);
+            border:1px solid var(--accent-cyan); color:var(--accent-cyan);
+            font-size:1.05em;
+            display:flex; align-items:center; justify-content:center;
+            cursor:none;
+            box-shadow:0 0 16px rgba(0,255,247,.22), inset 0 0 12px rgba(0,255,247,.04);
+            transition:.28s; backdrop-filter:blur(20px);
         }
         .music-btn:hover {
-            box-shadow: var(--neon-cyan), inset 0 0 20px rgba(0,255,247,0.1);
-            transform: scale(1.1);
+            box-shadow:var(--neon-cyan), inset 0 0 20px rgba(0,255,247,.08);
+            transform:scale(1.1);
         }
         .music-btn.playing {
-            border-color: var(--accent-pink);
-            color: var(--accent-pink);
-            box-shadow: var(--neon-pink), inset 0 0 20px rgba(255,0,94,0.1);
-            animation: music-pulse 1.5s ease-in-out infinite;
+            border-color:var(--accent-pink); color:var(--accent-pink);
+            box-shadow:var(--neon-pink), inset 0 0 20px rgba(255,0,94,.08);
+            animation:music-pulse 1.5s ease-in-out infinite;
         }
         @keyframes music-pulse {
-            0%, 100% { box-shadow: var(--neon-pink), inset 0 0 20px rgba(255,0,94,0.1); }
-            50% { box-shadow: 0 0 20px #ff005e, 0 0 40px #ff005e80, inset 0 0 30px rgba(255,0,94,0.15); }
+            0%,100% { box-shadow:var(--neon-pink), inset 0 0 20px rgba(255,0,94,.08); }
+            50%      { box-shadow:0 0 22px #ff005e, 0 0 44px #ff005e80, inset 0 0 30px rgba(255,0,94,.12); }
         }
 
-        @media (max-width: 600px) {
-            .download-item { flex-direction: column; align-items: flex-start; }
-            .btn-download { width: 100%; justify-content: center; }
-            .site-card-header { flex-direction: column; }
-            .header { padding: 30px 10px; }
-            .hud-corner { display: none; }
+        /* ═══════ DISCLAIMER ═══════ */
+        #disclaimer-overlay {
+            position:fixed; inset:0; z-index:999999;
+            background:rgba(3,1,13,.97);
+            backdrop-filter:blur(24px);
+            display:flex; align-items:center; justify-content:center;
+            padding:20px; cursor:none;
+        }
+
+        /* ═══════ RESPONSIVE ═══════ */
+        @media (max-width:600px) {
+            .download-item { flex-direction:column; align-items:flex-start; }
+            .btn-download { width:100%; justify-content:center; }
+            .site-card-header { flex-direction:column; }
+            .hud-corner { display:none; }
+            .nav-logo-sub { display:none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Disclaimer Modal -->
-    <div id="disclaimer-overlay" style="
-        position: fixed; inset: 0; z-index: 999999;
-        background: rgba(2,1,10,0.96);
-        backdrop-filter: blur(20px);
-        display: flex; align-items: center; justify-content: center;
-        padding: 20px;
-        cursor: none;
-    ">
+    <!-- Disclaimer -->
+    <div id="disclaimer-overlay">
         <div style="
-            max-width: 520px; width: 100%;
-            background: rgba(3,2,15,0.95);
-            border: 1px solid rgba(0,255,247,0.25);
-            border-left: 3px solid #00fff7;
-            border-radius: 6px;
-            padding: 40px 36px;
-            position: relative;
-            clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
-            box-shadow: 0 0 60px rgba(0,255,247,0.1), 0 0 120px rgba(180,0,255,0.05);
-            text-align: center;
+            max-width:520px; width:100%;
+            background:linear-gradient(135deg, rgba(4,2,20,.98), rgba(6,3,26,.96));
+            border:1px solid rgba(0,255,247,.2);
+            border-left:3px solid #00fff7;
+            border-radius:4px; padding:44px 38px;
+            position:relative;
+            clip-path:polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+            box-shadow:0 0 80px rgba(0,255,247,.1), 0 0 160px rgba(180,0,255,.05);
+            text-align:center;
         ">
-            <div style="font-size: 2.5em; margin-bottom: 16px;">⚠️</div>
-            <div style="
-                font-family: 'Orbitron', monospace;
-                font-size: 1em;
-                font-weight: 900;
-                color: #00fff7;
-                text-shadow: 0 0 8px #00fff7, 0 0 20px #00fff780;
-                letter-spacing: 3px;
-                text-transform: uppercase;
-                margin-bottom: 20px;
-            ">AVERTISSEMENT</div>
-            <p style="
-                font-family: 'Rajdhani', sans-serif;
-                font-size: 1em;
-                line-height: 1.75;
-                color: rgba(232,244,255,0.75);
-                margin-bottom: 10px;
-            ">
+            <div style="position:absolute;top:0;right:0;width:20px;height:20px;border-top:2px solid #00fff7;border-right:2px solid #00fff7;box-shadow:0 0 8px #00fff7;"></div>
+            <div style="position:absolute;bottom:0;left:0;width:20px;height:20px;border-bottom:2px solid #b400ff;border-left:2px solid #b400ff;"></div>
+            <div style="font-size:2.6em;margin-bottom:16px;">⚠️</div>
+            <div style="font-family:'Orbitron',monospace;font-size:1em;font-weight:900;color:#00fff7;text-shadow:0 0 8px #00fff7,0 0 20px #00fff780;letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;">AVERTISSEMENT</div>
+            <p style="font-family:'Rajdhani',sans-serif;font-size:1em;line-height:1.75;color:rgba(232,244,255,0.75);margin-bottom:10px;">
                 Les contenus présents sur <b style="color:#00fff7">C-Zone</b> (cheats, mods, jeux crackés…) sont fournis à titre informatif.
             </p>
-            <p style="
-                font-family: 'Rajdhani', sans-serif;
-                font-size: 1em;
-                line-height: 1.75;
-                color: rgba(232,244,255,0.75);
-                margin-bottom: 28px;
-            ">
+            <p style="font-family:'Rajdhani',sans-serif;font-size:1em;line-height:1.75;color:rgba(232,244,255,0.75);margin-bottom:28px;">
                 En accédant à ce site, vous acceptez que <b style="color:#ff005e">toute utilisation se fait à vos propres risques.</b><br>
                 Les administrateurs déclinent toute responsabilité.
             </p>
             <button onclick="document.getElementById('disclaimer-overlay').style.display='none'" style="
-                font-family: 'Orbitron', monospace;
-                font-weight: 800;
-                font-size: 0.75em;
-                letter-spacing: 3px;
-                text-transform: uppercase;
-                color: #00fff7;
-                background: transparent;
-                border: 1px solid #00fff7;
-                padding: 13px 40px;
-                border-radius: 3px;
-                cursor: pointer;
-                text-shadow: 0 0 8px #00fff7;
-                box-shadow: 0 0 15px rgba(0,255,247,0.2), inset 0 0 10px rgba(0,255,247,0.05);
-                clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-                transition: 0.3s;
+                font-family:'Orbitron',monospace;font-weight:800;font-size:.75em;
+                letter-spacing:3px;text-transform:uppercase;color:#00fff7;
+                background:transparent;border:1px solid #00fff7;padding:13px 42px;border-radius:2px;
+                cursor:pointer;text-shadow:0 0 8px #00fff7;
+                box-shadow:0 0 16px rgba(0,255,247,.18),inset 0 0 12px rgba(0,255,247,.04);
+                clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:.28s;
             "
-            onmouseover="this.style.boxShadow='0 0 8px #00fff7, 0 0 20px #00fff780, 0 0 40px #00fff740, inset 0 0 20px rgba(0,255,247,0.1)'"
-            onmouseout="this.style.boxShadow='0 0 15px rgba(0,255,247,0.2), inset 0 0 10px rgba(0,255,247,0.05)'"
-            >
-                J'ACCEPTE &nbsp;→
-            </button>
+            onmouseover="this.style.boxShadow='0 0 8px #00fff7,0 0 22px #00fff780,0 0 44px #00fff740,inset 0 0 22px rgba(0,255,247,0.08)'"
+            onmouseout="this.style.boxShadow='0 0 16px rgba(0,255,247,.18),inset 0 0 12px rgba(0,255,247,.04)'"
+            >J'ACCEPTE &nbsp;→</button>
         </div>
     </div>
 
-    <!-- Custom cursor -->
+    <!-- Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursor-ring"></div>
 
-    <!-- Background layers -->
+    <!-- BG layers -->
     <canvas id="bg-canvas"></canvas>
     <div class="nebula"></div>
     <div class="scanlines"></div>
     <div class="grid-overlay"></div>
+    <div class="grain"></div>
+    <div class="vignette"></div>
 
-    <!-- HUD corners -->
-    <div class="hud-corner hud-tl">
-        <svg viewBox="0 0 40 40" fill="none" stroke="#00fff7" stroke-width="1.5">
-            <path d="M0 15 L0 0 L15 0"/>
-        </svg>
-    </div>
-    <div class="hud-corner hud-tr">
-        <svg viewBox="0 0 40 40" fill="none" stroke="#00fff7" stroke-width="1.5">
-            <path d="M40 15 L40 0 L25 0"/>
-        </svg>
-    </div>
-    <div class="hud-corner hud-bl">
-        <svg viewBox="0 0 40 40" fill="none" stroke="#b400ff" stroke-width="1.5">
-            <path d="M0 25 L0 40 L15 40"/>
-        </svg>
-    </div>
-    <div class="hud-corner hud-br">
-        <svg viewBox="0 0 40 40" fill="none" stroke="#b400ff" stroke-width="1.5">
-            <path d="M40 25 L40 40 L25 40"/>
-        </svg>
-    </div>
+    <!-- HUD -->
+    <div class="hud-corner hud-tl"><svg viewBox="0 0 40 40" fill="none" stroke="#00fff7" stroke-width="1.5"><path d="M0 15L0 0L15 0"/></svg></div>
+    <div class="hud-corner hud-tr"><svg viewBox="0 0 40 40" fill="none" stroke="#00fff7" stroke-width="1.5"><path d="M40 15L40 0L25 0"/></svg></div>
+    <div class="hud-corner hud-bl"><svg viewBox="0 0 40 40" fill="none" stroke="#b400ff" stroke-width="1.5"><path d="M0 25L0 40L15 40"/></svg></div>
+    <div class="hud-corner hud-br"><svg viewBox="0 0 40 40" fill="none" stroke="#b400ff" stroke-width="1.5"><path d="M40 25L40 40L25 40"/></svg></div>
 
-    <!-- Music toggle button -->
+    <!-- Music -->
     <button class="music-btn" id="music-btn" title="Musique" onclick="toggleMusic()">
         <i class="fas fa-music" id="music-icon"></i>
     </button>
+    <div id="youtube-audio-container"><div id="player"></div></div>
 
-    <div id="youtube-audio-container">
-        <div id="player"></div>
-    </div>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a class="nav-logo" href="#">
+            <div class="nav-logo-hex">
+                <div class="nav-logo-ring"></div>
+                <div class="nav-logo-ring2"></div>
+                C
+            </div>
+            <div class="nav-logo-wordmark">
+                <div class="nav-logo-text">C-Zone</div>
+                <span class="nav-logo-sub">Premium Cheats &amp; Tools</span>
+            </div>
+        </a>
+        <div class="nav-divider"></div>
+        <div class="tabs-container">
+            <button id="default-tab" class="tab-link active" onclick="openTab(event,'Accueil')"><i class="fas fa-home"></i> Accueil</button>
+            <button class="tab-link" onclick="openTab(event,'Valorant')"><i class="fas fa-crosshairs"></i> Valorant</button>
+            <button class="tab-link" onclick="openTab(event,'Fortnite')"><i class="fas fa-person-rifle"></i> Fortnite</button>
+            <button class="tab-link" onclick="openTab(event,'CS2')"><i class="fas fa-gun"></i> CS 2</button>
+            <button class="tab-link" onclick="openTab(event,'Steam')"><i class="fab fa-steam"></i> Steam</button>
+            <button class="tab-link" onclick="openTab(event,'Roblox')"><i class="fas fa-cube"></i> Roblox</button>
+            <button class="tab-link" onclick="openTab(event,'JeuxCrack')"><i class="fas fa-gamepad"></i> Jeux Crack</button>
+            <button class="tab-link" onclick="openTab(event,'Autre')"><i class="fas fa-plus-circle"></i> Autre</button>
+            <button class="tab-link" onclick="openTab(event,'MadLoader')"><i class="fas fa-bolt"></i> MadLoader</button>
+            <button class="tab-link" onclick="openTab(event,'WeMod')"><i class="fas fa-wand-magic-sparkles"></i> WeMod</button>
+            <button class="tab-link" onclick="openTab(event,'ModEngine')"><i class="fas fa-gears"></i> ModEngine</button>
+            <button class="tab-link" onclick="openTab(event,'XModHub')"><i class="fas fa-layer-group"></i> XModHub</button>
+            <button class="tab-link" onclick="openTab(event,'ExLoader')"><i class="fas fa-file-zipper"></i> ExLoader</button>
+            <button class="tab-link" onclick="openTab(event,'Parametres')"><i class="fas fa-cog"></i> Setup</button>
+        </div>
+    </nav>
 
-    <header class="header">
-        <div class="logo-container">
-            <div class="logo-ring"></div>
-            <div class="logo-ring-2"></div>
-            <div class="logo-hexagon">C</div>
-        </div><br>
-        <h1 class="chromatic-title">C-Zone</h1>
-        <div class="title-sub">Premium Cheats &amp; Tools</div>
-    </header>
-
-    <div class="tabs-wrapper">
-        <nav class="tabs-container">
-            <button id="default-tab" class="tab-link active" onclick="openTab(event, 'Accueil')"><i class="fas fa-home"></i> Accueil</button>
-            <button class="tab-link" onclick="openTab(event, 'Valorant')"><i class="fas fa-crosshairs"></i> Valorant</button>
-            <button class="tab-link" onclick="openTab(event, 'Fortnite')"><i class="fas fa-person-rifle"></i> Fortnite</button>
-            <button class="tab-link" onclick="openTab(event, 'CS2')"><i class="fas fa-gun"></i> CS 2</button>
-            <button class="tab-link" onclick="openTab(event, 'Steam')"><i class="fab fa-steam"></i> Steam</button>
-            <button class="tab-link" onclick="openTab(event, 'Roblox')"><i class="fas fa-cube"></i> Roblox</button>
-            <button class="tab-link" onclick="openTab(event, 'JeuxCrack')"><i class="fas fa-gamepad"></i> Jeux Crack</button>
-            <button class="tab-link" onclick="openTab(event, 'Autre')"><i class="fas fa-plus-circle"></i> Autre</button>
-            <!-- NEW CATEGORIES -->
-            <button class="tab-link" onclick="openTab(event, 'MadLoader')"><i class="fas fa-bolt"></i> MadLoader</button>
-            <button class="tab-link" onclick="openTab(event, 'WeMod')"><i class="fas fa-wand-magic-sparkles"></i> WeMod</button>
-            <button class="tab-link" onclick="openTab(event, 'ModEngine')"><i class="fas fa-engine"></i> ModEngine</button>
-            <button class="tab-link" onclick="openTab(event, 'XModHub')"><i class="fas fa-x"></i> XModHub</button>
-            <button class="tab-link" onclick="openTab(event, 'ExLoader')"><i class="fas fa-file-zipper"></i> ExLoader</button>
-            <!-- END NEW -->
-            <button class="tab-link" onclick="openTab(event, 'Parametres')"><i class="fas fa-cog"></i> Setup</button>
-        </nav>
-    </div>
-
+    <!-- CONTENT -->
     <div class="content-container">
-        
+
         <div id="Accueil" class="tab-content active">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> SYSTÈME EN LIGNE &nbsp;·&nbsp; ALL SYSTEMS NOMINAL</div>
             <h2><i class="fas fa-star"></i> Accueil</h2>
-            <p style="font-size:1.05em; line-height:1.8; color: rgba(232,244,255,0.7);">Bienvenue sur C-Zone. Ce site répertorie des cheats pour de nombreux jeux.</p>
+            <p style="font-size:1.05em;line-height:1.8;color:rgba(232,244,255,0.7);">Bienvenue sur C-Zone. Ce site répertorie des cheats pour de nombreux jeux.</p>
             <div class="instruction-box">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-shuffle"></i> &nbsp;Musique : Playlist en lecture aléatoire activée.
             </div>
         </div>
 
         <div id="Valorant" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> VALORANT MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-crosshairs"></i> Valorant</h2>
             <div class="download-item">
@@ -1017,6 +760,7 @@
         </div>
 
         <div id="Fortnite" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> FORTNITE MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-person-rifle"></i> Fortnite</h2>
             <div class="download-item">
@@ -1030,6 +774,7 @@
         </div>
 
         <div id="CS2" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> CS2 MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-gun"></i> CS 2</h2>
             <div class="download-item">
@@ -1039,6 +784,7 @@
         </div>
 
         <div id="Steam" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> STEAM MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fab fa-steam"></i> Steam</h2>
             <div class="download-item">
@@ -1056,6 +802,7 @@
         </div>
 
         <div id="Roblox" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> ROBLOX MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-cube"></i> Roblox</h2>
             <div class="download-item">
@@ -1073,6 +820,7 @@
         </div>
 
         <div id="JeuxCrack" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> JEUX CRACK &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-gamepad"></i> Jeux Crack</h2>
             <div class="download-item">
@@ -1082,6 +830,7 @@
         </div>
 
         <div id="Autre" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> AUTRE MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-plus-circle"></i> Autre</h2>
             <div class="download-item"><div class="download-info">Warzone</div><a href="https://gofile.io/d/rhRKA6" class="btn-download" target="_blank"><i class="fas fa-download"></i> Gofile</a></div>
@@ -1092,11 +841,8 @@
             <div class="download-item"><div class="download-info">Wurst Client</div><a href="https://www.wurstclient.net/download/" class="btn-download" target="_blank"><i class="fas fa-external-link-alt"></i> Site</a></div>
         </div>
 
-        <!-- ═══════════════════════════════════════════════
-             NEW CATEGORIES
-        ═══════════════════════════════════════════════ -->
-
         <div id="MadLoader" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> MADLOADER MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-bolt"></i> MadLoader</h2>
             <div class="site-card">
@@ -1104,19 +850,16 @@
                     <div class="site-card-title"><i class="fas fa-bolt"></i> &nbsp;madloader.net</div>
                     <a href="https://madloader.net/#games" class="btn-download btn-gold" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
                 </div>
-                <div class="site-card-desc">
-                    Plateforme de téléchargement de jeux crackés et d'outils gaming. Accès direct à la section <b style="color:var(--accent-gold)">Games</b> — large catalogue mis à jour régulièrement.
-                </div>
+                <div class="site-card-desc">Plateforme de téléchargement de jeux crackés et d'outils gaming. Accès direct à la section <b style="color:var(--accent-gold)">Games</b> — large catalogue mis à jour régulièrement.</div>
             </div>
             <div class="download-item">
-                <div class="download-info">Section Jeux
-                    <small>madloader.net/#games</small>
-                </div>
+                <div class="download-info">Section Jeux<small>madloader.net/#games</small></div>
                 <a href="https://madloader.net/#games" class="btn-download btn-gold" target="_blank"><i class="fas fa-gamepad"></i> Ouvrir</a>
             </div>
         </div>
 
         <div id="WeMod" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> WEMOD MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-wand-magic-sparkles"></i> WeMod</h2>
             <div class="site-card">
@@ -1124,28 +867,21 @@
                     <div class="site-card-title"><i class="fas fa-wand-magic-sparkles"></i> &nbsp;wemod.com</div>
                     <a href="https://www.wemod.com/fr" class="btn-download" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
                 </div>
-                <div class="site-card-desc">
-                    WeMod est la plateforme de trainers la plus populaire — active des cheats en jeu (vie infinie, ressources illimitées, vitesse…) pour des milliers de jeux solo en un clic. Application desktop gratuite disponible.
-                </div>
+                <div class="site-card-desc">WeMod est la plateforme de trainers la plus populaire — active des cheats en jeu (vie infinie, ressources illimitées, vitesse…) pour des milliers de jeux solo en un clic. Application desktop gratuite disponible.</div>
             </div>
             <div class="download-item">
-                <div class="download-info">WeMod — Trainers & Cheats
-                    <small>wemod.com/fr</small>
-                </div>
+                <div class="download-info">WeMod — Trainers & Cheats<small>wemod.com/fr</small></div>
                 <a href="https://www.wemod.com/fr" class="btn-download" target="_blank"><i class="fas fa-external-link-alt"></i> Visiter</a>
             </div>
             <div class="download-item">
-                <div class="download-info">Wand-Enhancer
-                    <small>Extension non-officielle pour améliorer WeMod — k1tbyte/Wand-Enhancer</small>
-                </div>
+                <div class="download-info">Wand-Enhancer<small>Extension non-officielle pour améliorer WeMod — k1tbyte/Wand-Enhancer</small></div>
                 <a href="https://github.com/k1tbyte/Wand-Enhancer" class="btn-download btn-blue" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </div>
-            <div class="instruction-box">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Télécharge l'app WeMod, cherche ton jeu, lance-le via WeMod et active les options souhaitées.
-            </div>
+            <div class="instruction-box">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Télécharge l'app WeMod, cherche ton jeu, lance-le via WeMod et active les options souhaitées.</div>
         </div>
 
         <div id="ModEngine" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> MODENGINE MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-gears"></i> ModEngine</h2>
             <div class="site-card">
@@ -1153,19 +889,16 @@
                     <div class="site-card-title"><i class="fas fa-gears"></i> &nbsp;modengine.net</div>
                     <a href="https://modengine.net/" class="btn-download btn-blue" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
                 </div>
-                <div class="site-card-desc">
-                    ModEngine est un moteur de mods multi-jeux permettant d'injecter, gérer et lancer des mods facilement. Compatible avec de nombreux titres populaires — idéal pour charger des modifications personnalisées.
-                </div>
+                <div class="site-card-desc">ModEngine est un moteur de mods multi-jeux permettant d'injecter, gérer et lancer des mods facilement. Compatible avec de nombreux titres populaires — idéal pour charger des modifications personnalisées.</div>
             </div>
             <div class="download-item">
-                <div class="download-info">ModEngine — Mod Loader
-                    <small>modengine.net</small>
-                </div>
+                <div class="download-info">ModEngine — Mod Loader<small>modengine.net</small></div>
                 <a href="https://modengine.net/" class="btn-download btn-blue" target="_blank"><i class="fas fa-external-link-alt"></i> Visiter</a>
             </div>
         </div>
 
         <div id="XModHub" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> XMODHUB MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-layer-group"></i> XModHub</h2>
             <div class="site-card">
@@ -1173,19 +906,16 @@
                     <div class="site-card-title"><i class="fas fa-layer-group"></i> &nbsp;xmodhub.com</div>
                     <a href="https://www.xmodhub.com/en/" class="btn-download btn-video" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
                 </div>
-                <div class="site-card-desc">
-                    Hub de mods et cheats pour jeux PC et mobile. Catalogue varié avec mods APK, trainers, scripts et outils de modification — recherche par jeu ou par catégorie.
-                </div>
+                <div class="site-card-desc">Hub de mods et cheats pour jeux PC et mobile. Catalogue varié avec mods APK, trainers, scripts et outils de modification — recherche par jeu ou par catégorie.</div>
             </div>
             <div class="download-item">
-                <div class="download-info">XModHub — Mods & Tools
-                    <small>xmodhub.com/en/</small>
-                </div>
+                <div class="download-info">XModHub — Mods & Tools<small>xmodhub.com/en/</small></div>
                 <a href="https://www.xmodhub.com/en/" class="btn-download btn-video" target="_blank"><i class="fas fa-external-link-alt"></i> Visiter</a>
             </div>
         </div>
 
         <div id="ExLoader" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> EXLOADER MODULE &nbsp;·&nbsp; LOADED</div>
             <h2><i class="fas fa-file-zipper"></i> ExLoader</h2>
             <div class="site-card">
@@ -1193,21 +923,16 @@
                     <div class="site-card-title"><i class="fas fa-file-zipper"></i> &nbsp;exloader.net</div>
                     <a href="https://fr.exloader.net/" class="btn-download btn-blue" target="_blank"><i class="fas fa-external-link-alt"></i> Accéder</a>
                 </div>
-                <div class="site-card-desc">
-                    ExLoader est une plateforme francophone de téléchargement de jeux, logiciels et outils crackés. Interface en français, catalogue mis à jour, téléchargements directs ou via hébergeurs.
-                </div>
+                <div class="site-card-desc">ExLoader est une plateforme francophone de téléchargement de jeux, logiciels et outils crackés. Interface en français, catalogue mis à jour, téléchargements directs ou via hébergeurs.</div>
             </div>
             <div class="download-item">
-                <div class="download-info">ExLoader FR — Jeux & Logiciels
-                    <small>fr.exloader.net</small>
-                </div>
+                <div class="download-info">ExLoader FR — Jeux & Logiciels<small>fr.exloader.net</small></div>
                 <a href="https://fr.exloader.net/" class="btn-download btn-blue" target="_blank"><i class="fas fa-external-link-alt"></i> Visiter</a>
             </div>
         </div>
 
-        <!-- ═══════════════════════════════════════════════ -->
-
         <div id="Parametres" class="tab-content">
+            <div class="corner-tr"></div>
             <div class="status-bar"><div class="status-dot"></div> CONFIGURATION &nbsp;·&nbsp; ACTIVE</div>
             <h2><i class="fas fa-sliders"></i> Setup</h2>
             <input type="color" id="color-picker" value="#00fff7" oninput="changeColor(this.value)">
@@ -1221,245 +946,147 @@
         </div>
 
         <div class="discord-card">
-            <i class="fab fa-discord" style="font-size: 3em; color: #7c8bff; text-shadow: 0 0 20px rgba(88,101,242,0.8);"></i>
+            <i class="fab fa-discord" style="font-size:3em;color:#7c8bff;text-shadow:0 0 20px rgba(88,101,242,0.8);position:relative;z-index:1;"></i>
             <h3>Rejoignez la communauté</h3>
             <a href="https://discord.gg/PYzSdtBgPR" class="btn-discord">REJOINDRE</a>
         </div>
     </div>
 
     <script>
-        // ── CUSTOM CURSOR ──
+        // CURSOR
         const cursor = document.getElementById('cursor');
         const cursorRing = document.getElementById('cursor-ring');
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
-
+        let mouseX=0, mouseY=0, ringX=0, ringY=0;
         document.addEventListener('mousemove', e => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
+            mouseX=e.clientX; mouseY=e.clientY;
+            cursor.style.left=mouseX+'px'; cursor.style.top=mouseY+'px';
         });
-
-        function animateRing() {
-            ringX += (mouseX - ringX) * 0.1;
-            ringY += (mouseY - ringY) * 0.1;
-            cursorRing.style.left = ringX + 'px';
-            cursorRing.style.top = ringY + 'px';
-            requestAnimationFrame(animateRing);
-        }
-        animateRing();
-
-        document.querySelectorAll('a, button, input').forEach(el => {
+        (function animRing() {
+            ringX += (mouseX-ringX)*.1; ringY += (mouseY-ringY)*.1;
+            cursorRing.style.left=ringX+'px'; cursorRing.style.top=ringY+'px';
+            requestAnimationFrame(animRing);
+        })();
+        document.querySelectorAll('a,button,input').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursorRing.style.width = '55px';
-                cursorRing.style.height = '55px';
-                cursorRing.style.borderColor = 'rgba(0,255,247,0.7)';
-                cursor.style.transform = 'translate(-50%,-50%) scale(0.5)';
+                cursorRing.style.width='52px'; cursorRing.style.height='52px';
+                cursorRing.style.borderColor='rgba(0,255,247,.65)';
+                cursor.style.transform='translate(-50%,-50%) scale(.4)';
             });
             el.addEventListener('mouseleave', () => {
-                cursorRing.style.width = '36px';
-                cursorRing.style.height = '36px';
-                cursorRing.style.borderColor = 'rgba(0,255,247,0.4)';
-                cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+                cursorRing.style.width='34px'; cursorRing.style.height='34px';
+                cursorRing.style.borderColor='rgba(0,255,247,.35)';
+                cursor.style.transform='translate(-50%,-50%) scale(1)';
             });
         });
 
-        // ── STARFIELD CANVAS ──
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let stars = [];
-        let shootingStars = [];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', () => { resize(); initStars(); });
-
-        function initStars() {
-            stars = [];
-            const count = Math.floor((canvas.width * canvas.height) / 4000);
-            for (let i = 0; i < count; i++) {
-                stars.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    r: Math.random() * 1.5 + 0.2,
-                    alpha: Math.random(),
-                    speed: Math.random() * 0.3 + 0.05,
-                    twinkle: Math.random() * 0.02 + 0.005,
-                    twinkleDir: Math.random() > 0.5 ? 1 : -1,
-                    color: Math.random() > 0.9 ? '#b4e4ff' : Math.random() > 0.8 ? '#ffe4b4' : '#ffffff'
-                });
-            }
+        // STARFIELD
+        const canvas=document.getElementById('bg-canvas');
+        const ctx=canvas.getContext('2d');
+        let stars=[], shoots=[];
+        function resize(){ canvas.width=innerWidth; canvas.height=innerHeight; }
+        resize(); window.addEventListener('resize',()=>{resize();initStars();});
+        function initStars(){
+            stars=[];
+            const n=Math.floor(canvas.width*canvas.height/3600);
+            for(let i=0;i<n;i++) stars.push({
+                x:Math.random()*canvas.width, y:Math.random()*canvas.height,
+                r:Math.random()*1.5+.15, a:Math.random(),
+                spd:Math.random()*.28+.04,
+                tw:Math.random()*.02+.004, twd:Math.random()>.5?1:-1,
+                col:Math.random()>.88?'#b4e4ff':Math.random()>.78?'#ffe4b4':'#ffffff'
+            });
         }
         initStars();
+        setInterval(()=>shoots.push({
+            x:Math.random()*canvas.width*.7, y:Math.random()*canvas.height*.3,
+            len:Math.random()*130+65, spd:Math.random()*9+6, a:1,
+            angle:Math.PI/4+(Math.random()-.5)*.3
+        }), 3500);
 
-        function spawnShootingStar() {
-            shootingStars.push({
-                x: Math.random() * canvas.width * 0.7,
-                y: Math.random() * canvas.height * 0.3,
-                len: Math.random() * 120 + 60,
-                speed: Math.random() * 8 + 6,
-                alpha: 1,
-                angle: Math.PI / 4 + (Math.random() - 0.5) * 0.3
+        function drawFrame(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            ctx.fillStyle='#03010d'; ctx.fillRect(0,0,canvas.width,canvas.height);
+            [[.18,.28,'rgba(180,0,255,.04)'],[.82,.68,'rgba(0,200,255,.04)'],[.5,.5,'rgba(255,0,94,.02)']].forEach(([px,py,c])=>{
+                const g=ctx.createRadialGradient(canvas.width*px,canvas.height*py,0,canvas.width*px,canvas.height*py,canvas.width*.42);
+                g.addColorStop(0,c); g.addColorStop(1,'transparent');
+                ctx.fillStyle=g; ctx.fillRect(0,0,canvas.width,canvas.height);
             });
-        }
-
-        setInterval(spawnShootingStar, 3500);
-
-        function drawFrame() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#02010a';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            const grd1 = ctx.createRadialGradient(
-                canvas.width * 0.2, canvas.height * 0.3, 0,
-                canvas.width * 0.2, canvas.height * 0.3, canvas.width * 0.4
-            );
-            grd1.addColorStop(0, 'rgba(180,0,255,0.04)');
-            grd1.addColorStop(1, 'transparent');
-            ctx.fillStyle = grd1;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            const grd2 = ctx.createRadialGradient(
-                canvas.width * 0.8, canvas.height * 0.6, 0,
-                canvas.width * 0.8, canvas.height * 0.6, canvas.width * 0.35
-            );
-            grd2.addColorStop(0, 'rgba(0,200,255,0.04)');
-            grd2.addColorStop(1, 'transparent');
-            ctx.fillStyle = grd2;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            stars.forEach(s => {
-                s.alpha += s.twinkle * s.twinkleDir;
-                if (s.alpha >= 1 || s.alpha <= 0.1) s.twinkleDir *= -1;
-                s.y += s.speed * 0.05;
-                if (s.y > canvas.height) s.y = 0;
-
-                ctx.globalAlpha = s.alpha;
-                ctx.fillStyle = s.color;
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.globalAlpha = 1;
-
-                if (s.r > 1.2) {
-                    ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r * 2.5, 0, Math.PI * 2);
-                    const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 2.5);
-                    glow.addColorStop(0, `rgba(100,200,255,${s.alpha * 0.15})`);
-                    glow.addColorStop(1, 'transparent');
-                    ctx.fillStyle = glow;
-                    ctx.fill();
+            stars.forEach(s=>{
+                s.a+=s.tw*s.twd; if(s.a>=1||s.a<=.08) s.twd*=-1;
+                s.y+=s.spd*.045; if(s.y>canvas.height) s.y=0;
+                ctx.globalAlpha=s.a; ctx.fillStyle=s.col;
+                ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); ctx.fill();
+                if(s.r>1.1){
+                    const g=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r*2.8);
+                    g.addColorStop(0,`rgba(100,200,255,${s.a*.18})`); g.addColorStop(1,'transparent');
+                    ctx.beginPath(); ctx.arc(s.x,s.y,s.r*2.8,0,Math.PI*2);
+                    ctx.fillStyle=g; ctx.fill();
                 }
+                ctx.globalAlpha=1;
             });
-
-            shootingStars.forEach((ss, i) => {
-                ctx.save();
-                ctx.translate(ss.x, ss.y);
-                ctx.rotate(ss.angle);
-                const grad = ctx.createLinearGradient(0, 0, ss.len, 0);
-                grad.addColorStop(0, `rgba(0,255,247,${ss.alpha})`);
-                grad.addColorStop(0.3, `rgba(255,255,255,${ss.alpha * 0.8})`);
-                grad.addColorStop(1, 'transparent');
-                ctx.strokeStyle = grad;
-                ctx.lineWidth = 1.5;
-                ctx.globalAlpha = ss.alpha;
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.lineTo(ss.len, 0);
-                ctx.stroke();
-                ctx.restore();
-                ctx.globalAlpha = 1;
-                ss.x += Math.cos(ss.angle) * ss.speed;
-                ss.y += Math.sin(ss.angle) * ss.speed;
-                ss.alpha -= 0.018;
-                if (ss.alpha <= 0) shootingStars.splice(i, 1);
+            shoots.forEach((ss,i)=>{
+                ctx.save(); ctx.translate(ss.x,ss.y); ctx.rotate(ss.angle);
+                const g=ctx.createLinearGradient(0,0,ss.len,0);
+                g.addColorStop(0,`rgba(0,255,247,${ss.a})`);
+                g.addColorStop(.3,`rgba(255,255,255,${ss.a*.8})`);
+                g.addColorStop(1,'transparent');
+                ctx.strokeStyle=g; ctx.lineWidth=1.5; ctx.globalAlpha=ss.a;
+                ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(ss.len,0); ctx.stroke();
+                ctx.restore(); ctx.globalAlpha=1;
+                ss.x+=Math.cos(ss.angle)*ss.spd; ss.y+=Math.sin(ss.angle)*ss.spd;
+                ss.a-=.018; if(ss.a<=0) shoots.splice(i,1);
             });
-
             requestAnimationFrame(drawFrame);
         }
         drawFrame();
 
-        // ── DATA STREAM columns ──
-        const chars = '01アイウエオカキクケコ█▓▒░⟨⟩◈◉⊕⊗';
-        const numColumns = Math.floor(window.innerWidth / 80);
-        for (let i = 0; i < numColumns; i++) {
-            const el = document.createElement('div');
+        // DATA STREAMS
+        const chars='01アイウエオカキクケコ█▓▒░⟨⟩◈◉⊕⊗';
+        for(let i=0;i<Math.floor(innerWidth/80);i++){
+            const el=document.createElement('div');
             el.classList.add('data-stream');
-            el.style.left = (i * 80 + Math.random() * 40) + 'px';
-            el.style.animationDuration = (Math.random() * 10 + 8) + 's';
-            el.style.animationDelay = (Math.random() * 10) + 's';
-            el.style.opacity = Math.random() * 0.12 + 0.03;
-            let text = '';
-            for (let j = 0; j < 20; j++) text += chars[Math.floor(Math.random() * chars.length)] + '\n';
-            el.textContent = text;
-            document.body.appendChild(el);
+            el.style.left=(i*80+Math.random()*40)+'px';
+            el.style.animationDuration=(Math.random()*10+8)+'s';
+            el.style.animationDelay=(Math.random()*10)+'s';
+            el.style.opacity=Math.random()*.1+.02;
+            let t=''; for(let j=0;j<20;j++) t+=chars[Math.floor(Math.random()*chars.length)]+'\n';
+            el.textContent=t; document.body.appendChild(el);
         }
 
-        // ── TABS ──
-        function openTab(evt, tabName) {
-            const contents = document.querySelectorAll(".tab-content");
-            const links = document.querySelectorAll(".tab-link");
-            contents.forEach(c => { c.style.display = "none"; c.classList.remove('active'); });
-            links.forEach(l => l.classList.remove("active"));
-            const target = document.getElementById(tabName);
-            target.style.display = "block";
-            target.classList.add('active');
-            evt.currentTarget.classList.add("active");
-            evt.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        // TABS
+        function openTab(evt,tabName){
+            document.querySelectorAll('.tab-content').forEach(c=>{c.style.display='none';c.classList.remove('active');});
+            document.querySelectorAll('.tab-link').forEach(l=>l.classList.remove('active'));
+            const t=document.getElementById(tabName);
+            t.style.display='block'; t.classList.add('active');
+            evt.currentTarget.classList.add('active');
+            evt.currentTarget.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
         }
 
-        // ── COLOR THEME ──
-        function changeColor(color) {
-            document.documentElement.style.setProperty('--accent-cyan', color);
-            document.documentElement.style.setProperty('--glass-border', color + '20');
-            document.documentElement.style.setProperty('--neon-cyan', `0 0 8px ${color}, 0 0 20px ${color}80, 0 0 40px ${color}40`);
+        // COLOR
+        function changeColor(color){
+            document.documentElement.style.setProperty('--accent-cyan',color);
+            document.documentElement.style.setProperty('--glass-border',color+'20');
+            document.documentElement.style.setProperty('--neon-cyan',`0 0 8px ${color}, 0 0 20px ${color}80, 0 0 50px ${color}40`);
         }
 
-        // ── YOUTUBE MUSIC ──
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        var isPlaying = false;
-
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0', width: '0',
-                playerVars: {
-                    'listType': 'playlist',
-                    'list': 'PLwmMLmVmd6jHXXVp8gldmU4ary2vJpXDJ',
-                    'autoplay': 0, 'loop': 1, 'controls': 0
-                },
-                events: { 'onReady': onPlayerReady }
+        // YOUTUBE
+        var tag=document.createElement('script');
+        tag.src='https://www.youtube.com/iframe_api';
+        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag,document.getElementsByTagName('script')[0]);
+        var player, isPlaying=false;
+        function onYouTubeIframeAPIReady(){
+            player=new YT.Player('player',{
+                height:'0',width:'0',
+                playerVars:{listType:'playlist',list:'PLwmMLmVmd6jHXXVp8gldmU4ary2vJpXDJ',autoplay:0,loop:1,controls:0},
+                events:{onReady:e=>e.target.setShuffle(true)}
             });
         }
-
-        function onPlayerReady(event) {
-            event.target.setShuffle(true);
-        }
-
-        function toggleMusic() {
-            if (!player) return;
-            const btn = document.getElementById('music-btn');
-            const icon = document.getElementById('music-icon');
-            if (!isPlaying) {
-                player.playVideo();
-                player.unMute();
-                isPlaying = true;
-                btn.classList.add('playing');
-                icon.className = 'fas fa-pause';
-            } else {
-                player.pauseVideo();
-                isPlaying = false;
-                btn.classList.remove('playing');
-                icon.className = 'fas fa-music';
-            }
+        function toggleMusic(){
+            if(!player) return;
+            const btn=document.getElementById('music-btn'), icon=document.getElementById('music-icon');
+            if(!isPlaying){player.playVideo();player.unMute();isPlaying=true;btn.classList.add('playing');icon.className='fas fa-pause';}
+            else{player.pauseVideo();isPlaying=false;btn.classList.remove('playing');icon.className='fas fa-music';}
         }
     </script>
 </body>
