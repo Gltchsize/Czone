@@ -415,12 +415,95 @@ input[type="color"] {
   padding:24px;cursor:none;
 }
 
-@media(max-width:600px){
-  .download-item{flex-direction:column;align-items:flex-start;}
-  .btn-download{width:100%;justify-content:center;}
-  .site-card-header{flex-direction:column;}
-  .hud{display:none;} .nav-logo-sub{display:none;}
+/* ── TOUCH DEVICES : désactiver cursor custom ── */
+@media(hover:none){
+  body{cursor:auto;}
+  #cur,#cur-r{display:none;}
+  .tab-link,.btn-download,.btn-social,.btn-discord,.music-btn,
+  .btn-discord,.nav-logo{cursor:pointer;}
+  input[type="color"]{cursor:pointer;}
+}
+
+/* ── TABLET ── */
+@media(max-width:900px){
+  .content-container{padding:0 16px;}
   .navbar{padding:0 16px;}
+  h2{font-size:1.2em;}
+}
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  /* layout */
+  .hud,.data-stream,.blob{display:none;}
+  .blob-1,.blob-2,.blob-3{display:none;}
+
+  /* navbar : logo + scroll tabs */
+  .navbar{
+    height:56px;padding:0 14px;
+    flex-wrap:nowrap;gap:8px;
+  }
+  .nav-logo{margin-right:10px;gap:9px;}
+  .nav-logo-mark{width:30px;height:30px;font-size:.85em;border-radius:6px;}
+  .nav-logo-name{font-size:.82em;letter-spacing:1px;}
+  .nav-logo-sub{display:none;}
+  .nav-sep{display:none;}
+
+  .tabs-container{height:56px;gap:0;}
+  .tab-link{
+    padding:0 11px;height:56px;
+    font-size:.55em;gap:5px;letter-spacing:0;
+  }
+  .tab-link i{font-size:.85em;}
+
+  /* content */
+  .content-container{margin-top:68px;margin-bottom:90px;padding:0 12px;}
+
+  /* panel */
+  .tab-content{
+    padding:20px 16px;border-radius:12px;
+  }
+
+  /* headings */
+  h2{font-size:1.1em;margin-bottom:18px;gap:10px;}
+  h3{font-size:.75em;}
+  .status-bar{font-size:.62em;margin-bottom:18px;}
+
+  /* download rows */
+  .download-item{
+    flex-direction:column;align-items:flex-start;
+    padding:12px 14px;gap:10px;
+  }
+  .download-info{font-size:.97em;min-width:unset;width:100%;}
+  .btn-download{width:100%;justify-content:center;padding:10px 16px;font-size:.7em;}
+
+  /* site cards */
+  .site-card{padding:16px 14px;}
+  .site-card-header{flex-direction:column;gap:10px;}
+  .site-card-title{font-size:.75em;}
+
+  /* instruction box */
+  .instruction-box{padding:14px 16px 14px 36px;font-size:.88em;}
+
+  /* social grid */
+  .social-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;margin-top:28px;
+  }
+  .btn-social{padding:16px 8px;font-size:.7em;}
+
+  /* discord */
+  .discord-card{padding:28px 20px;}
+  .discord-card h3{font-size:1em;}
+  .btn-discord{padding:11px 24px;font-size:.78em;}
+
+  /* music btn */
+  .music-btn{
+    bottom:18px;right:18px;
+    width:44px;height:44px;font-size:.95em;
+  }
+
+  /* disclaimer */
+  #disc-overlay{padding:16px;}
 }
 </style>
 </head>
@@ -436,7 +519,7 @@ input[type="color"] {
     max-width:500px;width:100%;
     background:rgba(19,0,16,.98);
     border:1px solid rgba(255,6,181,.25);
-    border-radius:20px;padding:48px 40px;text-align:center;
+    border-radius:20px;padding:clamp(28px,6vw,48px) clamp(20px,6vw,40px);text-align:center;
     box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 0 1px rgba(255,6,181,.08);
     position:relative;
   ">
@@ -730,15 +813,19 @@ input[type="color"] {
 </div>
 
 <script>
-// CURSOR
+// CURSOR — désactivé sur touch
+const isTouch=('ontouchstart' in window)||navigator.maxTouchPoints>0;
 const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(a);})();
-document.querySelectorAll('a,button,input').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{curR.style.width='48px';curR.style.height='48px';curR.style.borderColor='rgba(255,92,212,.6)';cur.style.transform='translate(-50%,-50%) scale(.3)';});
-  el.addEventListener('mouseleave',()=>{curR.style.width='30px';curR.style.height='30px';curR.style.borderColor='rgba(255,92,212,.5)';cur.style.transform='translate(-50%,-50%) scale(1)';});
-});
+if(isTouch){cur.style.display='none';curR.style.display='none';}
+else{
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function a(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(a);})();
+  document.querySelectorAll('a,button,input').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{curR.style.width='48px';curR.style.height='48px';curR.style.borderColor='rgba(255,92,212,.6)';cur.style.transform='translate(-50%,-50%) scale(.3)';});
+    el.addEventListener('mouseleave',()=>{curR.style.width='30px';curR.style.height='30px';curR.style.borderColor='rgba(255,92,212,.5)';cur.style.transform='translate(-50%,-50%) scale(1)';});
+  });
+}
 
 // soft floating particles
 const canvas=document.createElement('canvas');
