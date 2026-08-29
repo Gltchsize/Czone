@@ -371,6 +371,105 @@ input[type="color"]{width:100%;height:56px;border:1px solid var(--border);border
 .notif-close:hover{color:var(--text);}
 #notif-bar{position:absolute;bottom:0;left:0;height:2px;border-radius:0 0 12px 12px;background:linear-gradient(90deg,var(--vd),var(--v),var(--vl));box-shadow:0 0 8px rgba(255,6,181,.6);width:100%;}
 @media(max-width:600px){#notif{right:12px;bottom:76px;max-width:calc(100vw - 24px);}}
+
+/* ── DISCORD JOIN MODAL ── */
+#discord-modal {
+  position:fixed; inset:0; z-index:9800;
+  display:flex; align-items:center; justify-content:center;
+  padding:20px;
+  background:rgba(8,0,13,.72);
+  backdrop-filter:blur(18px);
+  opacity:0; pointer-events:none;
+  transition:opacity .6s ease;
+}
+#discord-modal.show { opacity:1; pointer-events:all; }
+#discord-modal.hide { opacity:0; pointer-events:none; }
+
+.dm-box {
+  position:relative;
+  background:linear-gradient(145deg,rgba(18,4,28,.97),rgba(12,2,20,.97));
+  border:1px solid rgba(88,101,242,.35);
+  border-radius:20px;
+  padding:clamp(28px,5vw,44px) clamp(24px,5vw,44px);
+  max-width:480px; width:100%;
+  text-align:center;
+  box-shadow:0 24px 80px rgba(0,0,0,.7), 0 0 60px rgba(88,101,242,.1);
+  animation:dm-in .7s cubic-bezier(.23,1,.32,1) forwards;
+}
+@keyframes dm-in {
+  from { transform:translateY(30px) scale(.94); opacity:0; }
+  to   { transform:none; opacity:1; }
+}
+.dm-box::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(88,101,242,.5),rgba(255,6,181,.3),transparent);
+  border-radius:20px 20px 0 0;
+}
+
+.dm-icon {
+  width:64px; height:64px; border-radius:16px;
+  background:linear-gradient(135deg,#5865F2,#4752c4);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.8em; color:#fff; margin:0 auto 20px;
+  box-shadow:0 8px 32px rgba(88,101,242,.45);
+  animation:dm-pulse 2.5s ease-in-out infinite alternate;
+}
+@keyframes dm-pulse {
+  from { box-shadow:0 8px 28px rgba(88,101,242,.35); }
+  to   { box-shadow:0 8px 48px rgba(88,101,242,.7), 0 0 80px rgba(88,101,242,.25); }
+}
+
+.dm-title {
+  font-family:'Playfair Display',serif; font-weight:900;
+  font-size:clamp(1.3em,4vw,1.7em); color:#fff;
+  line-height:1.2; margin-bottom:10px;
+}
+
+.dm-sub {
+  font-family:'DM Sans',sans-serif; font-weight:300;
+  font-size:clamp(.82em,1.5vw,.92em);
+  color:rgba(255,240,255,.55); line-height:1.65;
+  margin-bottom:28px;
+}
+.dm-sub b { color:#a5b4fc; font-weight:500; }
+
+.dm-join {
+  display:inline-flex; align-items:center; gap:10px;
+  background:#5865F2; color:#fff;
+  font-family:'DM Sans',sans-serif; font-weight:600;
+  font-size:.92em; letter-spacing:.4px;
+  padding:13px 36px; border-radius:10px;
+  text-decoration:none; cursor:pointer;
+  box-shadow:0 6px 28px rgba(88,101,242,.45);
+  transition:background .25s, box-shadow .25s, transform .2s;
+  border:none; width:100%; justify-content:center;
+}
+.dm-join:hover {
+  background:#4752c4;
+  box-shadow:0 8px 40px rgba(88,101,242,.7);
+  transform:scale(1.03);
+}
+
+.dm-skip {
+  display:block; margin-top:14px;
+  font-family:'DM Mono',monospace; font-size:.6em;
+  color:rgba(255,255,255,.2); letter-spacing:2px;
+  text-transform:uppercase; cursor:pointer;
+  background:none; border:none;
+  transition:color .2s;
+}
+.dm-skip:hover { color:rgba(255,255,255,.5); }
+
+.dm-badge {
+  display:inline-flex; align-items:center; gap:6px;
+  background:rgba(59,165,93,.12); border:1px solid rgba(59,165,93,.25);
+  border-radius:20px; padding:5px 14px;
+  font-family:'DM Mono',monospace; font-size:.58em;
+  color:#3ba55d; letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:18px;
+}
+.dm-badge-dot { width:5px; height:5px; border-radius:50%; background:#3ba55d; box-shadow:0 0 6px #3ba55d; animation:blink 2s infinite; }
+
 </style>
 </head>
 <body>
@@ -490,6 +589,22 @@ input[type="color"]{width:100%;height:56px;border:1px solid var(--border);border
   </div>
   <button class="notif-close" onclick="closeNotif()"><i class="fas fa-xmark"></i></button>
   <div id="notif-bar"></div>
+</div>
+
+<!-- DISCORD JOIN MODAL -->
+<div id="discord-modal">
+  <div class="dm-box">
+    <div class="dm-badge"><div class="dm-badge-dot"></div>Serveur actif</div>
+    <div class="dm-icon"><i class="fab fa-discord"></i></div>
+    <div class="dm-title">Rejoins le serveur C-ZONE</div>
+    <p class="dm-sub">
+      Pour recevoir <b>toutes les mises à jour</b>, accéder aux derniers cheats et rester informé en temps réel — rejoins notre Discord.
+    </p>
+    <a class="dm-join" href="https://discord.gg/B58ndCRdhQ" target="_blank" onclick="closeDiscordModal()">
+      <i class="fab fa-discord"></i> Rejoindre le Discord
+    </a>
+    <button class="dm-skip" onclick="closeDiscordModal()">Continuer sans rejoindre</button>
+  </div>
 </div>
 
 <button class="music-btn" id="music-btn" onclick="toggleMusic()">
@@ -1320,6 +1435,21 @@ setTimeout(()=>{
   setTimeout(()=>{bar.style.width='0%';},50);
   setTimeout(closeNotif,6200);
 },7800);
+
+/* ── DISCORD MODAL ── */
+function closeDiscordModal(){
+  const m=document.getElementById('discord-modal');
+  m.classList.remove('show'); m.classList.add('hide');
+  setTimeout(()=>{m.style.display='none';},600);
+}
+// Show after intro ends (~7.8s)
+setTimeout(()=>{
+  const m=document.getElementById('discord-modal');
+  if(!m)return;
+  m.style.display='flex';
+  requestAnimationFrame(()=>{ requestAnimationFrame(()=>{ m.classList.add('show'); }); });
+}, 7800);
+
 </script>
 </body>
 </html>
